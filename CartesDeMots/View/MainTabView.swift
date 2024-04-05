@@ -8,32 +8,36 @@
 import SwiftUI
 
 struct MainTabView: View {
-    @State private var activeTab = Tab.cards
+    @State private var activeTab = Tab.list
     
     @Namespace private var animation
     
     var body: some View {
             TabView(selection: $activeTab,
                     content:  {
-                Text("List")
+                ListView()
                     .tag(Tab.list)
                     .toolbar(.hidden, for: .tabBar)
-                Text("Cards")
+                CardsView()
                     .tag(Tab.cards)
                     .toolbar(.hidden, for: .tabBar)
-                Text("Resources")
+                ResourcesView()
                     .tag(Tab.resources)
                     .toolbar(.hidden, for: .tabBar)
+                SettingsView()
+                    .tag(Tab.settings)
+                    .toolbar(.hidden, for: .tabBar)
             })
+        //TODO: найти более изящное решение
+            .id(UUID())
         
-        //TODO: custom tabbar
         customTabBar()
     }
+    
     @ViewBuilder
     func customTabBar() -> some View {
         HStack {
             ForEach(Tab.allCases, id: \.rawValue) { tab in
-                //TODO: do item
                 TabBarItemView(tab: tab, animation: animation, activeTab: $activeTab)
                     .onTapGesture {
                         activeTab = tab
@@ -43,10 +47,10 @@ struct MainTabView: View {
         .padding(.top, 5)
         .background {
             Rectangle()
-                .fill(.gray)
+                .fill(.orange)
                 .ignoresSafeArea()
-                .shadow(radius: 10)
-                .blur(radius: 1.0)
+//                .shadow(radius: 10)
+//                .blur(radius: 2.0)
         }
         .animation(.interactiveSpring(
             response: 0.2,

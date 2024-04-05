@@ -17,19 +17,19 @@ struct TabBarItemView: View {
             Image(systemName: tab.image)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(height: activeTab == tab ? 50 : 40)
+                .frame(height: activeTab == tab ? 35 : 30)
                 .padding(.horizontal)
                 .frame(maxWidth: .infinity)
-                .padding(12)
+                .padding(13)
+                .foregroundColor(activeTab == tab ? .orange : .white)
                 .background {
                     if activeTab == tab {
                         Circle()
-                            .fill(Color.brown)
+                            .fill(Color.white)
                             .matchedGeometryEffect(id: "ID", in: animation)
                     }
                 }
-                .offset(y: activeTab == tab ? -1 : 0)
-            Text(tab.rawValue)
+//                .offset(y: activeTab == tab ? -1 : 0)
         }
     }
 }

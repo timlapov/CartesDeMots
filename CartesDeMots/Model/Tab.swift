@@ -11,6 +11,7 @@ enum Tab: String, CaseIterable {
     case list = "List"
     case cards = "Cards"
     case resources = "Resources"
+    case settings = "Settings"
     
     var image: String {
         switch self {
@@ -21,6 +22,8 @@ enum Tab: String, CaseIterable {
             "lanyardcard"
         case .resources:
             "archivebox"
+        case .settings:
+            "gear"
         }
     }
     

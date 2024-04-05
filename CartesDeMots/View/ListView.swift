@@ -8,11 +8,49 @@
 import SwiftUI
 
 struct ListView: View {
+    @State var search = ""
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            HStack {
+                HStack {
+                    Image(systemName: "magnifyingglass")
+                    TextField("Search", text: $search)
+                }
+                .padding()
+                .background {
+                    Capsule()
+                        .fill(.gray)
+                        .opacity(0.2)
+                }
+                Button(action: { }, label: {
+                    Image(systemName: "plus")
+                        .foregroundColor(.white)
+                        .padding()
+                        .background {
+                            Circle()
+                                .fill(.orange)
+                        }
+                })
+            }
+            .padding(.horizontal)
+
+            
+            ScrollView {
+                
+                VStack {
+                    
+                    CardItemView()
+                    CardItemView()
+                    CardItemView()
+                    CardItemView()
+                    
+                }
+            }
+        }
     }
 }
 
 #Preview {
-    ListView()
+    ContentView()
 }
