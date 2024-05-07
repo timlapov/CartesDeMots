@@ -9,27 +9,30 @@ import SwiftUI
 
 struct TabBarItemView: View {
     var tab: Tab
-    var animation: Namespace.ID
     @Binding var activeTab: Tab
     
     var body: some View {
-        VStack {
-            Image(systemName: tab.image)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(height: activeTab == tab ? 35 : 30)
-                .padding(.horizontal)
-                .frame(maxWidth: .infinity)
-                .padding(13)
-                .foregroundColor(activeTab == tab ? .orange : .white)
-                .background {
+        ZStack {
+            Button {
+                withAnimation(.interactiveSpring(response: 0.6,
+                                                 dampingFraction: 0.6,
+                                                 blendDuration: 0.6)) {
+                    activeTab = tab
+                }
+            } label: {
+                HStack {
+                    Image(systemName: tab.image)
+                        .resizable()
+                        .frame(width: 20, height: 20)
                     if activeTab == tab {
-                        Circle()
-                            .fill(Color.white)
-                            .matchedGeometryEffect(id: "ID", in: animation)
+                        Text(tab.rawValue)
+                            .font(.title3)
                     }
                 }
-//                .offset(y: activeTab == tab ? -1 : 0)
+                .foregroundColor(activeTab == tab ? .white : .black)
+            }
+
         }
     }
 }
+

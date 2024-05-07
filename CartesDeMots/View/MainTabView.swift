@@ -10,57 +10,44 @@ import SwiftUI
 struct MainTabView: View {
     @State private var activeTab = Tab.list
     
-    @Namespace private var animation
-    
-    var body: some View {
-            TabView(selection: $activeTab,
-                    content:  {
-                ListView()
-                    .tag(Tab.list)
-                    .toolbar(.hidden, for: .tabBar)
-                CardsView()
-                    .tag(Tab.cards)
-                    .toolbar(.hidden, for: .tabBar)
-                ResourcesView()
-                    .tag(Tab.resources)
-                    .toolbar(.hidden, for: .tabBar)
-                SettingsView()
-                    .tag(Tab.settings)
-                    .toolbar(.hidden, for: .tabBar)
-            })
-        //TODO: найти более изящное решение
-            .id(UUID())
-        
-        customTabBar()
+    init() {
+        UITabBar.appearance().isHidden = true
     }
     
-    @ViewBuilder
-    func customTabBar() -> some View {
-        HStack {
-            ForEach(Tab.allCases, id: \.rawValue) { tab in
-                TabBarItemView(tab: tab, animation: animation, activeTab: $activeTab)
-                    .onTapGesture {
-                        activeTab = tab
-                    }
+    var body: some View {
+        ZStack(alignment: .bottom) {
+            TabView(selection: $activeTab,
+                        content:  {
+                    ListView()
+                        .tag(Tab.list)
+                    CardsView()
+                        .tag(Tab.cards)
+                    ResourcesView()
+                        .tag(Tab.resources)
+                    SettingsView()
+                        .tag(Tab.settings)
+                })
+            
+            HStack {
+                ForEach(Tab.allCases, id: \.self) {tab in
+                    Spacer()
+                    TabBarItemView(tab: tab, activeTab: $activeTab)
+                    Spacer()
+                }
+            }
+            .padding()
+            .frame(maxWidth: .infinity)
+            .background {
+                Capsule()
+                    .foregroundColor(.gray.opacity(0.9))
+                    .blur(radius: 3.0)
+                    .padding(.horizontal)
             }
         }
-        .padding(.top, 5)
-        .background {
-            Rectangle()
-                .fill(.orange)
-                .ignoresSafeArea()
-//                .shadow(radius: 10)
-//                .blur(radius: 2.0)
-        }
-        .animation(.interactiveSpring(
-            response: 0.2,
-            dampingFraction: 0.35,
-            blendDuration: 0.6
-        ), value: activeTab)
-        
     }
 }
 
 #Preview {
     MainTabView()
 }
+
