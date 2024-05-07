@@ -1,56 +1,79 @@
 //
-//  CardsView.swift
+//  ListView.swift
 //  CartesDeMots
 //
-//  Created by Timothée LAPOV on 04/04/2024.
+//  Created by Timothée LAPOV on 03/04/2024.
 //
 
 import SwiftUI
 
-struct CardsView: View {
-    
-    @State private var translationIsShown = false
+struct ListView: View {
+    @State var search = ""
     
     var body: some View {
-        VStack {
-            Spacer()
-            Text("🇫🇷")
-                .fontWeight(.light)
-                .foregroundStyle(.gray)
-            .padding(.all, 0)
-            Text("Автомобиль")
-                .padding()
-            ZStack {
-                Text("Une Voiture")
-                    .padding(.top, 0)
-                    .font(.headline)
-                Button(action: { translationIsShown = true }, label: {
-                    Text("Show translation")
-                        .foregroundStyle(.white)
-                        .padding()
-                        .background {
-                            Color.orange
-                                .cornerRadius(10)
-                        }
-                        .opacity(translationIsShown ? 0 : 1)
-                })
-            }
-            Spacer()
-            Button(action: {
-                translationIsShown = false
-            }, label: {
+        ZStack {
+            VStack{
                 HStack {
-                    Text("Next")
-                        .foregroundStyle(.orange)
-                    Image(systemName: "chevron.forward")
-                        .foregroundColor(.orange)
+                    HStack {
+                        Image(systemName: "magnifyingglass")
+                        TextField("Search", text: $search)
+                    }
+                    .padding()
+                    .background {
+                        GlassView()
+                        Color.gray.opacity(0.1)
+                    }
+                    .clipShape(Capsule())
+                    Button(action: { }, label: {
+                        Image(systemName: "plus")
+                            .foregroundColor(.white)
+                            .padding()
+                            .background {
+                                Circle()
+                                    .fill(.orange)
+                                    .opacity(0.95)
+                            }
+                            //.shadow(radius: 7)
+                    })
+//                    Button(action: { }, label: {
+//                        Image(systemName: "plus")
+//                            .padding()
+//                            .foregroundColor(.white)
+//                            .background {
+//                                GlassView()
+//                                    .background(.orange)
+//                                    .opacity(0.8)
+//                                    .clipShape(Circle())
+//                            }
+//                            .shadow(radius: 7)
+//                    })
                 }
-                .padding(.bottom, 20)
-            })
+                .padding(.horizontal)
+
+                
+                ScrollView {
+                    
+                    VStack {
+                        
+                        CardItemView()
+                        CardItemView()
+                        CardItemView()
+                        CardItemView()
+                        
+                    }
+                }
+            }
         }
+        .background {
+            Image("bgList")
+                .resizable()
+                .scaledToFill()
+                .ignoresSafeArea()
+        }
+
     }
 }
 
 #Preview {
-    CardsView()
+    ContentView()
 }
