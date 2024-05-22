@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MainTabView: View {
-    @State private var activeTab = Tab.list
+    @State private var activeTab = Tab.cards
     
     init() {
         UITabBar.appearance().isHidden = true
@@ -18,10 +18,10 @@ struct MainTabView: View {
         ZStack(alignment: .bottom) {
             TabView(selection: $activeTab,
                         content:  {
-                    ListView()
-                        .tag(Tab.list)
                     CardsView()
                         .tag(Tab.cards)
+                    LearnView()
+                        .tag(Tab.learn)
                     ResourcesView()
                         .tag(Tab.resources)
                     SettingsView()
@@ -39,8 +39,8 @@ struct MainTabView: View {
             .frame(maxWidth: .infinity)
             .background {
                 Capsule()
-                    .foregroundColor(.gray.opacity(0.9))
-                    .blur(radius: 3.0)
+                    .foregroundColor(.white)
+                    .shadow(radius: 7)
                     .padding(.horizontal)
             }
         }

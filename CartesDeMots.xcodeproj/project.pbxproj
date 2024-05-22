@@ -14,11 +14,20 @@
 		920B5D072BBD74890070E2BC /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920B5D062BBD74890070E2BC /* MainTabView.swift */; };
 		920B5D092BBD75380070E2BC /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920B5D082BBD75380070E2BC /* Tab.swift */; };
 		920B5D0B2BBD924C0070E2BC /* TabBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920B5D0A2BBD924C0070E2BC /* TabBarItemView.swift */; };
-		920B5D0F2BBDCDF40070E2BC /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920B5D0E2BBDCDF40070E2BC /* ListView.swift */; };
+		920B5D0F2BBDCDF40070E2BC /* CardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920B5D0E2BBDCDF40070E2BC /* CardsView.swift */; };
 		920B5D112BBEA9F90070E2BC /* CardItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920B5D102BBEA9F90070E2BC /* CardItemView.swift */; };
-		920B5D132BBED8EC0070E2BC /* CardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920B5D122BBED8EC0070E2BC /* CardsView.swift */; };
+		920B5D132BBED8EC0070E2BC /* LearnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920B5D122BBED8EC0070E2BC /* LearnView.swift */; };
 		920B5D152BBED94A0070E2BC /* ResourcesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920B5D142BBED94A0070E2BC /* ResourcesView.swift */; };
 		920B5D172BBED95A0070E2BC /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920B5D162BBED95A0070E2BC /* SettingsView.swift */; };
+		92E68EE92BEA874A00CFDF89 /* GlassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E68EE82BEA874A00CFDF89 /* GlassView.swift */; };
+		92E68EEB2BEB778900CFDF89 /* ResourceItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E68EEA2BEB778900CFDF89 /* ResourceItemView.swift */; };
+		92E68EED2BEB849700CFDF89 /* NewWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E68EEC2BEB849700CFDF89 /* NewWordView.swift */; };
+		92E68EEF2BEB84A900CFDF89 /* NewLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E68EEE2BEB84A900CFDF89 /* NewLinkView.swift */; };
+		92E68EF12BEB883A00CFDF89 /* GlassTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E68EF02BEB883A00CFDF89 /* GlassTextFieldView.swift */; };
+		92E68EF32BEB93AF00CFDF89 /* FlagPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E68EF22BEB93AF00CFDF89 /* FlagPickerView.swift */; };
+		92E68EF52BEB9BDE00CFDF89 /* CardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E68EF42BEB9BDE00CFDF89 /* CardsViewModel.swift */; };
+		92E68EF72BEB9F2200CFDF89 /* ModalHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E68EF62BEB9F2200CFDF89 /* ModalHandler.swift */; };
+		92E68EF92BEBE21D00CFDF89 /* ResourcesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E68EF82BEBE21D00CFDF89 /* ResourcesViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,11 +39,20 @@
 		920B5D062BBD74890070E2BC /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		920B5D082BBD75380070E2BC /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
 		920B5D0A2BBD924C0070E2BC /* TabBarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemView.swift; sourceTree = "<group>"; };
-		920B5D0E2BBDCDF40070E2BC /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		920B5D0E2BBDCDF40070E2BC /* CardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsView.swift; sourceTree = "<group>"; };
 		920B5D102BBEA9F90070E2BC /* CardItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardItemView.swift; sourceTree = "<group>"; };
-		920B5D122BBED8EC0070E2BC /* CardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsView.swift; sourceTree = "<group>"; };
+		920B5D122BBED8EC0070E2BC /* LearnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnView.swift; sourceTree = "<group>"; };
 		920B5D142BBED94A0070E2BC /* ResourcesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesView.swift; sourceTree = "<group>"; };
 		920B5D162BBED95A0070E2BC /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		92E68EE82BEA874A00CFDF89 /* GlassView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassView.swift; sourceTree = "<group>"; };
+		92E68EEA2BEB778900CFDF89 /* ResourceItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceItemView.swift; sourceTree = "<group>"; };
+		92E68EEC2BEB849700CFDF89 /* NewWordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWordView.swift; sourceTree = "<group>"; };
+		92E68EEE2BEB84A900CFDF89 /* NewLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLinkView.swift; sourceTree = "<group>"; };
+		92E68EF02BEB883A00CFDF89 /* GlassTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassTextFieldView.swift; sourceTree = "<group>"; };
+		92E68EF22BEB93AF00CFDF89 /* FlagPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagPickerView.swift; sourceTree = "<group>"; };
+		92E68EF42BEB9BDE00CFDF89 /* CardsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewModel.swift; sourceTree = "<group>"; };
+		92E68EF62BEB9F2200CFDF89 /* ModalHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalHandler.swift; sourceTree = "<group>"; };
+		92E68EF82BEBE21D00CFDF89 /* ResourcesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				920B5D082BBD75380070E2BC /* Tab.swift */,
+				92E68EF62BEB9F2200CFDF89 /* ModalHandler.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -97,13 +116,19 @@
 			isa = PBXGroup;
 			children = (
 				920B5CF72BBD72300070E2BC /* ContentView.swift */,
-				920B5D0E2BBDCDF40070E2BC /* ListView.swift */,
-				920B5D122BBED8EC0070E2BC /* CardsView.swift */,
+				920B5D062BBD74890070E2BC /* MainTabView.swift */,
+				920B5D0E2BBDCDF40070E2BC /* CardsView.swift */,
+				920B5D122BBED8EC0070E2BC /* LearnView.swift */,
 				920B5D142BBED94A0070E2BC /* ResourcesView.swift */,
 				920B5D162BBED95A0070E2BC /* SettingsView.swift */,
+				92E68EEC2BEB849700CFDF89 /* NewWordView.swift */,
+				92E68EEE2BEB84A900CFDF89 /* NewLinkView.swift */,
 				920B5D102BBEA9F90070E2BC /* CardItemView.swift */,
-				920B5D062BBD74890070E2BC /* MainTabView.swift */,
+				92E68EEA2BEB778900CFDF89 /* ResourceItemView.swift */,
 				920B5D0A2BBD924C0070E2BC /* TabBarItemView.swift */,
+				92E68EE82BEA874A00CFDF89 /* GlassView.swift */,
+				92E68EF02BEB883A00CFDF89 /* GlassTextFieldView.swift */,
+				92E68EF22BEB93AF00CFDF89 /* FlagPickerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -111,6 +136,8 @@
 		920B5D052BBD72430070E2BC /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				92E68EF42BEB9BDE00CFDF89 /* CardsViewModel.swift */,
+				92E68EF82BEBE21D00CFDF89 /* ResourcesViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -186,13 +213,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				920B5D152BBED94A0070E2BC /* ResourcesView.swift in Sources */,
+				92E68EF52BEB9BDE00CFDF89 /* CardsViewModel.swift in Sources */,
 				920B5CF82BBD72300070E2BC /* ContentView.swift in Sources */,
+				92E68EF32BEB93AF00CFDF89 /* FlagPickerView.swift in Sources */,
+				92E68EED2BEB849700CFDF89 /* NewWordView.swift in Sources */,
 				920B5D112BBEA9F90070E2BC /* CardItemView.swift in Sources */,
-				920B5D132BBED8EC0070E2BC /* CardsView.swift in Sources */,
+				92E68EF72BEB9F2200CFDF89 /* ModalHandler.swift in Sources */,
+				92E68EF92BEBE21D00CFDF89 /* ResourcesViewModel.swift in Sources */,
+				92E68EEB2BEB778900CFDF89 /* ResourceItemView.swift in Sources */,
+				92E68EEF2BEB84A900CFDF89 /* NewLinkView.swift in Sources */,
+				92E68EF12BEB883A00CFDF89 /* GlassTextFieldView.swift in Sources */,
+				920B5D132BBED8EC0070E2BC /* LearnView.swift in Sources */,
 				920B5CF62BBD72300070E2BC /* CartesDeMotsApp.swift in Sources */,
 				920B5D172BBED95A0070E2BC /* SettingsView.swift in Sources */,
-				920B5D0F2BBDCDF40070E2BC /* ListView.swift in Sources */,
+				920B5D0F2BBDCDF40070E2BC /* CardsView.swift in Sources */,
 				920B5D072BBD74890070E2BC /* MainTabView.swift in Sources */,
+				92E68EE92BEA874A00CFDF89 /* GlassView.swift in Sources */,
 				920B5D0B2BBD924C0070E2BC /* TabBarItemView.swift in Sources */,
 				920B5D092BBD75380070E2BC /* Tab.swift in Sources */,
 			);

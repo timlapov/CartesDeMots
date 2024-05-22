@@ -8,9 +8,24 @@
 import SwiftUI
 
 struct SettingsView: View {
+    
     var body: some View {
-        Text("Settings")
+        
+        VStack {
+            
+            FlagPickerView()
+                .padding(.bottom, 0)
+            
+            Text("Select the language you are learning. Its flag will appear on the cards")
+                .padding(.top, 0)
+            
+        }
+        .background {
+            Image("bgSettings")
     }
+        
+    }
+    
 }
 
 #Preview {

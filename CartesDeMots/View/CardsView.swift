@@ -7,8 +7,10 @@
 
 import SwiftUI
 
-struct ListView: View {
+struct CardsView: View {
     @State var search = ""
+    
+    @ObservedObject var cardsViewModel = CardsViewModel()
     
     var body: some View {
         ZStack {
@@ -18,16 +20,19 @@ struct ListView: View {
                         Image(systemName: "magnifyingglass")
                         TextField("Search", text: $search)
                     }
-                    .padding()
+                    .padding(.horizontal)
+                    .padding(.vertical, 7)
                     .background {
                         GlassView()
                         Color.gray.opacity(0.1)
                     }
                     .clipShape(Capsule())
-                    Button(action: { }, label: {
+                    Button(action: { 
+                        cardsViewModel.addViewHandler = ModalHandler()
+                    }, label: {
                         Image(systemName: "plus")
                             .foregroundColor(.white)
-                            .padding()
+                            .padding(7)
                             .background {
                                 Circle()
                                     .fill(.orange)
@@ -35,34 +40,36 @@ struct ListView: View {
                             }
                             //.shadow(radius: 7)
                     })
-//                    Button(action: { }, label: {
-//                        Image(systemName: "plus")
-//                            .padding()
-//                            .foregroundColor(.white)
-//                            .background {
-//                                GlassView()
-//                                    .background(.orange)
-//                                    .opacity(0.8)
-//                                    .clipShape(Circle())
-//                            }
-//                            .shadow(radius: 7)
-//                    })
                 }
                 .padding(.horizontal)
-
                 
                 ScrollView {
                     
                     VStack {
                         
-                        CardItemView()
-                        CardItemView()
-                        CardItemView()
-                        CardItemView()
+                        CardItemView {
+                            //
+                        }
+                        
+                        CardItemView {
+                            //
+                        }
+                        
+                        CardItemView {
+                            //
+                        }
+                        
+                        CardItemView {
+                            //
+                        }
                         
                     }
+                    
                 }
             }
+        }
+        .sheet(item: $cardsViewModel.addViewHandler) {_ in 
+            NewWordView(cardsViewModel: cardsViewModel)
         }
         .background {
             Image("bgList")
@@ -76,4 +83,14 @@ struct ListView: View {
 
 #Preview {
     ContentView()
+}
+
+extension View {
+    func screenSize() -> CGSize {
+        guard let window = UIApplication.shared.connectedScenes.first as?
+                UIWindowScene else {
+            return .zero
+        }
+        return window.screen.bounds.size
+    }
 }

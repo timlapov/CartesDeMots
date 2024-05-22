@@ -27,9 +27,11 @@ struct TabBarItemView: View {
                     if activeTab == tab {
                         Text(tab.rawValue)
                             .font(.title3)
+                            .fontDesign(.rounded)
+                            .bold()
                     }
                 }
-                .foregroundColor(activeTab == tab ? .white : .black)
+                .foregroundColor(activeTab == tab ? .black : .gray)
             }
 
         }

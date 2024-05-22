@@ -8,18 +8,18 @@
 import Foundation
 
 enum Tab: String, CaseIterable {
-    case list = "List"
     case cards = "Cards"
+    case learn = "Learn"
     case resources = "Resources"
     case settings = "Settings"
     
     var image: String {
         switch self {
             
-        case .list:
-            "list.bullet.rectangle.portrait"
         case .cards:
             "lanyardcard"
+        case .learn:
+            "list.bullet.rectangle.portrait"
         case .resources:
             "archivebox"
         case .settings:
