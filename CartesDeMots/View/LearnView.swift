@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Pow
 
 struct LearnView: View {
     
@@ -41,6 +42,8 @@ struct LearnView: View {
                                     .cornerRadius(10)
                             }
                             .opacity(translationIsShown ? 0 : 1)
+                            .conditionalEffect(.repeat(.wiggle(rate: .fast), every: .seconds(3)), condition: true)
+                            
                     })
                 }
                 

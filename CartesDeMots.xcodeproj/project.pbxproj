@@ -19,6 +19,7 @@
 		920B5D132BBED8EC0070E2BC /* LearnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920B5D122BBED8EC0070E2BC /* LearnView.swift */; };
 		920B5D152BBED94A0070E2BC /* ResourcesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920B5D142BBED94A0070E2BC /* ResourcesView.swift */; };
 		920B5D172BBED95A0070E2BC /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920B5D162BBED95A0070E2BC /* SettingsView.swift */; };
+		92A537BB2BFE2A01000F77C6 /* Pow in Frameworks */ = {isa = PBXBuildFile; productRef = 92A537BA2BFE2A01000F77C6 /* Pow */; };
 		92E68EE92BEA874A00CFDF89 /* GlassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E68EE82BEA874A00CFDF89 /* GlassView.swift */; };
 		92E68EEB2BEB778900CFDF89 /* ResourceItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E68EEA2BEB778900CFDF89 /* ResourceItemView.swift */; };
 		92E68EED2BEB849700CFDF89 /* NewWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E68EEC2BEB849700CFDF89 /* NewWordView.swift */; };
@@ -60,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92A537BB2BFE2A01000F77C6 /* Pow in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,6 +160,9 @@
 			dependencies = (
 			);
 			name = CartesDeMots;
+			packageProductDependencies = (
+				92A537BA2BFE2A01000F77C6 /* Pow */,
+			);
 			productName = CartesDeMots;
 			productReference = 920B5CF22BBD72300070E2BC /* CartesDeMots.app */;
 			productType = "com.apple.product-type.application";
@@ -186,6 +191,9 @@
 				Base,
 			);
 			mainGroup = 920B5CE92BBD72300070E2BC;
+			packageReferences = (
+				92A537B92BFE2A01000F77C6 /* XCRemoteSwiftPackageReference "Pow" */,
+			);
 			productRefGroup = 920B5CF32BBD72300070E2BC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -436,6 +444,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		92A537B92BFE2A01000F77C6 /* XCRemoteSwiftPackageReference "Pow" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/EmergeTools/Pow";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 1.0.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		92A537BA2BFE2A01000F77C6 /* Pow */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 92A537B92BFE2A01000F77C6 /* XCRemoteSwiftPackageReference "Pow" */;
+			productName = Pow;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 920B5CEA2BBD72300070E2BC /* Project object */;
 }
