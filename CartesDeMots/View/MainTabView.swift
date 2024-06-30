@@ -48,6 +48,7 @@ struct MainTabView: View {
 }
 
 #Preview {
-    MainTabView()
+    ContentView()
+        .modelContainer(for: [Card.self, Resource.self])
 }
 

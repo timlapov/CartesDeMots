@@ -6,8 +6,13 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct CardsView: View {
+    @Query(sort: [SortDescriptor(\Card.addDate, order: .reverse)], animation: .default) private var cards: [Card]
+    
+    @Environment(\.modelContext) private var modelContext
+    
     @State var search = ""
     
     @ObservedObject var cardsViewModel = CardsViewModel()
@@ -16,18 +21,23 @@ struct CardsView: View {
         ZStack {
             VStack{
                 HStack {
-                    HStack {
-                        Image(systemName: "magnifyingglass")
-                        TextField("Search", text: $search)
-                    }
-                    .padding(.horizontal)
-                    .padding(.vertical, 7)
-                    .background {
-                        GlassView()
-                        Color.gray.opacity(0.1)
-                    }
-                    .clipShape(Capsule())
-                    Button(action: { 
+                    //                    HStack {
+                    //                        Image(systemName: "magnifyingglass")
+                    //                        TextField("Search", text: $search)
+                    //                    }
+                    //                    .padding(.horizontal)
+                    //                    .padding(.vertical, 7)
+                    //                    .background {
+                    //                        GlassView()
+                    //                        Color.gray.opacity(0.1)
+                    //                    }
+                    //                    .clipShape(Capsule())
+                    Text("Your list of words")
+                        .font(.title)
+                        .fontDesign(.rounded)
+                        .bold()
+                    Spacer()
+                    Button(action: {
                         cardsViewModel.addViewHandler = ModalHandler()
                     }, label: {
                         Image(systemName: "plus")
@@ -38,37 +48,21 @@ struct CardsView: View {
                                     .fill(.orange)
                                     .opacity(0.95)
                             }
-                            //.shadow(radius: 7)
                     })
                 }
                 .padding(.horizontal)
                 
                 ScrollView {
-                    
-                    VStack {
-                        
-                        CardItemView {
-                            //
-                        }
-                        
-                        CardItemView {
-                            //
-                        }
-                        
-                        CardItemView {
-                            //
-                        }
-                        
-                        CardItemView {
-                            //
-                        }
-                        
+                    ForEach(cards) { card in
+                        CardItemView(onDelete: {
+                            modelContext.delete(card)
+                        }, card: card)
                     }
-                    
                 }
+                .padding(.horizontal)
             }
         }
-        .sheet(item: $cardsViewModel.addViewHandler) {_ in 
+        .sheet(item: $cardsViewModel.addViewHandler) {_ in
             NewWordView(cardsViewModel: cardsViewModel)
         }
         .background {
@@ -77,12 +71,12 @@ struct CardsView: View {
                 .scaledToFill()
                 .ignoresSafeArea()
         }
-
     }
 }
 
 #Preview {
     ContentView()
+        .modelContainer(for: [Card.self, Resource.self])
 }
 
 extension View {

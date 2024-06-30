@@ -6,42 +6,49 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ResourcesView: View {
+    @Query(sort: [SortDescriptor(\Resource.addDate, order: .reverse)], animation: .default) private var resources: [Resource]
+    
+    @Environment(\.modelContext) private var modelContext
     
     @ObservedObject var resourcesViewModel = ResourcesViewModel()
     
     var body: some View {
         VStack {
-            ScrollView {
-                
+            HStack {
+                Text("Useful links")
+                    .font(.title)
+                    .fontDesign(.rounded)
+                    .bold()
+                Spacer()
                 Button(action: {
                     resourcesViewModel.addViewHandler = ModalHandler()
                 }, label: {
                     Image(systemName: "plus")
-                        .foregroundColor(.orange)
+                        .foregroundColor(.white)
+                        .padding(7)
+                        .background {
+                            Circle()
+                                .fill(.orange)
+                                .opacity(0.95)
+                        }
                 })
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background {
-                    GlassView()
-                }
-                .cornerRadius(10)
-                .padding(.horizontal)
-                .padding(.bottom, 15)
-                .shadow(color: .black.opacity(0.1), radius: 7)
-                .contentShape(Rectangle())
-                
-                    ResourceItemView()
-                    ResourceItemView()
-                    ResourceItemView()
-                    ResourceItemView()
-                    ResourceItemView()
-                                
-                }
-                .background {
-                    Image("bgResources")
             }
+            .padding(.horizontal)
+            
+            ScrollView {
+                ForEach(resources) { resource in
+                    ResourceItemView(onDelete: {
+                        modelContext.delete(resource)
+                    }, resource: resource)
+                }
+            }
+            .padding(.horizontal)
+        }
+        .background {
+            Image("bgResources")
         }
         .sheet(item: $resourcesViewModel.addViewHandler) {_ in
             NewLinkView(resourcesViewModel: resourcesViewModel)
@@ -51,4 +58,5 @@ struct ResourcesView: View {
 
 #Preview {
     ResourcesView()
+        .modelContainer(for: Resource.self)
 }

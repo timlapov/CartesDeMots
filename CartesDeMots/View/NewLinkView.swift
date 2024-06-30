@@ -8,9 +8,14 @@
 import SwiftUI
 
 struct NewLinkView: View {
+    @Environment(\.modelContext) private var modelContext
     @ObservedObject var resourcesViewModel: ResourcesViewModel
-    @State var description = ""
-    @State var link = ""
+    @State var title = ""
+    @State var link = "https://"
+    
+    private var isButtonDisabled: Bool {
+        title.count < 2 || link.count < 2 ? true : false
+    }
     
     var body: some View {
         VStack {
@@ -31,25 +36,26 @@ struct NewLinkView: View {
             
             Spacer()
             
-            GlassTextFieldView(text: $description, placeholder: "Description")
+            GlassTextFieldView(text: $title, placeholder: "Title")
             
             GlassTextFieldView(text: $link, placeholder: "Link")
             
             Button(action: {
-                
+                let resource = Resource(title: title, link: link)
+                modelContext.insert(resource)
+                resourcesViewModel.addViewHandler = nil
             }, label: {
                 Text("Add the link")
                     .padding()
                     .foregroundStyle(.white)
                     .bold()
                     .background {
-                        Color.orange
+                        isButtonDisabled ? Color.gray : Color.orange
                     }
                     .clipShape(Capsule())
             })
             .padding(.top)
-            
-            Spacer()
+    
             
         }
         .padding()

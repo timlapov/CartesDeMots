@@ -16,6 +16,7 @@ struct GlassTextFieldView: View {
             .padding()
             .background {
                 GlassView()
+                    .background(.white.opacity(0.5))
             }
             .clipShape(Capsule())
             .shadow(radius: 7)
