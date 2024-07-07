@@ -16,10 +16,11 @@ struct GlassTextFieldView: View {
             .padding()
             .background {
                 GlassView()
-                    .background(.white.opacity(0.5))
+                    .background(.white.opacity(0.4))
             }
-            .clipShape(Capsule())
-            .shadow(radius: 7)
+           // .clipShape(Capsule())
+           // .shadow(radius: 7)
+            .cornerRadius(10)
             .padding(.top, 30)
     }
 }

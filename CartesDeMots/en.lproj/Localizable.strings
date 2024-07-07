@@ -5,3 +5,50 @@
   Created by Timothée LAPOV on 07/07/2024.
   
 */
+
+//MARK: TabBar
+"tab_words" = "Words";
+"tab_learn" = "Training";
+"tab_resources" = "Resources";
+"tab_settings" = "Settings";
+
+//MARK: CardItemView
+"Comment" = "Comment";
+"Swipe to delete" = "Swipe to delete";
+
+//MARK: CardsView
+"Your list of words" = "Your list of words";
+
+//MARK: NewWordView
+"New word" = "New word";
+"Foreign word" = "Foreign word (invisible side)";
+"Translation" = "Translation (visible side)";
+"Add the word" = "Add the word";
+
+//MARK: LearnView
+"Complexity %d" = "Complexity %d";
+"Show word" = "Show word";
+"Easy" = "Easy";
+"Hard" = "Hard";
+"No words available for learning" = "No words available for learning";
+
+//MARK: ResourcesView
+"Useful links" = "Useful links";
+
+//MARK: NewLinkView
+"New resource link" = "New resource link";
+"Title" = "Title";
+"Link" = "Link";
+"Add the link" = "Add the link";
+
+//MARK: SettingsView
+"Settings" = "Settings";
+"Language" = "Language";
+"Enter language (emoji or name)" = "Enter language (emoji or name)";
+"Startup Page" = "Startup Page";
+"How to use the app" = "How to use the app";
+"how_to_alert_text" = "Swipe to delete\nAll words sync between devices and are saved after reinstalling the app if you log in to the same iCloud account\nWords initially have the same rating, but it changes depending on whether the word is easy or difficult\nEasy words are shown less and less frequently, difficult ones - more often\nWords with zero rating are not shown";
+"Got it" = "Got it";
+"Write to developer" = "Write to developer";
+"Feedback for CartesDeMots app (v%@)" = "Feedback for CartesDeMots app (v%@)";
+"emailBody" = "Hello,\n\nI'm writing from the CartesDeMots app.\n\nI want to report a bug:\n\nI want to suggest an idea:\n\n";

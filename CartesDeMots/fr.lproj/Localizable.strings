@@ -5,3 +5,49 @@
   Created by Timothée LAPOV on 07/07/2024.
   
 */
+//MARK: TabBar
+"tab_words" = "Mots";
+"tab_learn" = "Apprentissage";
+"tab_resources" = "Ressources";
+"tab_settings" = "Paramètres";
+
+//MARK: CardItemView
+"Comment" = "Commentaire";
+"Swipe to delete" = "Glissez pour supprimer";
+
+//MARK: CardsView
+"Your list of words" = "Votre liste de mots";
+
+//MARK: NewWordView
+"New word" = "Nouveau mot";
+"Foreign word" = "Mot étranger (côté invisible)";
+"Translation" = "Traduction (côté visible)";
+"Add the word" = "Ajouter le mot";
+
+//MARK: LearnView
+"Complexity %d" = "Complexité %d";
+"Show word" = "Afficher le mot";
+"Easy" = "Facile";
+"Hard" = "Difficile";
+"No words available for learning" = "Aucun mot disponible pour l'apprentissage";
+
+//MARK: ResourcesView
+"Useful links" = "Liens utiles";
+
+//MARK: NewLinkView
+"New resource link" = "Nouveau lien de ressource";
+"Title" = "Titre";
+"Link" = "Lien";
+"Add the link" = "Ajouter le lien";
+
+//MARK: SettingsView
+"Settings" = "Réglages";
+"Language" = "Langue";
+"Enter language (emoji or name)" = "Entrez la langue (emoji ou nom)";
+"Startup Page" = "Page de démarrage";
+"How to use the app" = "Comment utiliser l'application";
+"how_to_alert_text" = "Glissez pour supprimer\nTous les mots se synchronisent entre les appareils et sont sauvegardés après la réinstallation de l'application si vous vous connectez au même compte iCloud\nLes mots ont initialement la même note, mais elle change selon que le mot est facile ou difficile\nLes mots faciles sont montrés de moins en moins fréquemment, les difficiles - plus souvent\nLes mots dont le classement est nul ne sont pas affichés";
+"Got it" = "J'ai compris";
+"Write to developer" = "Écrire au développeur";
+"Feedback for CartesDeMots app (v%@)" = "Commentaires sur l'application CartesDeMots (v%@)";
+"emailBody" = "Bonjour,\n\nJ'écris depuis l'application CartesDeMots.\n\nJe souhaite signaler un bug :\n\nJe souhaite suggérer une idée :\n\n";

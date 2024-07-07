@@ -19,7 +19,10 @@
 		920B5D132BBED8EC0070E2BC /* LearnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920B5D122BBED8EC0070E2BC /* LearnView.swift */; };
 		920B5D152BBED94A0070E2BC /* ResourcesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920B5D142BBED94A0070E2BC /* ResourcesView.swift */; };
 		920B5D172BBED95A0070E2BC /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920B5D162BBED95A0070E2BC /* SettingsView.swift */; };
+		921ED5FC2C3A760C00EDE003 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 921ED5FA2C3A760C00EDE003 /* Localizable.strings */; };
+		924064732C35C6D800BBA95B /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924064722C35C6D800BBA95B /* Settings.swift */; };
 		92545E8B2BFF57C000071E57 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92545E8A2BFF57C000071E57 /* Card.swift */; };
+		9291E5D82C36BC1F00DA3383 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9291E5D72C36BC1F00DA3383 /* HapticManager.swift */; };
 		92A537BB2BFE2A01000F77C6 /* Pow in Frameworks */ = {isa = PBXBuildFile; productRef = 92A537BA2BFE2A01000F77C6 /* Pow */; };
 		92C3AF0A2C31A93E00A49AFF /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C3AF092C31A93E00A49AFF /* Resource.swift */; };
 		92C3AF0C2C31CECF00A49AFF /* LearnViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C3AF0B2C31CECF00A49AFF /* LearnViewModel.swift */; };
@@ -48,7 +51,12 @@
 		920B5D122BBED8EC0070E2BC /* LearnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnView.swift; sourceTree = "<group>"; };
 		920B5D142BBED94A0070E2BC /* ResourcesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesView.swift; sourceTree = "<group>"; };
 		920B5D162BBED95A0070E2BC /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		921ED5FB2C3A760C00EDE003 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		921ED5FD2C3A76A900EDE003 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		921ED5FE2C3A76AA00EDE003 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		924064722C35C6D800BBA95B /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		92545E8A2BFF57C000071E57 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		9291E5D72C36BC1F00DA3383 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		92C3AF072C318E1B00A49AFF /* CartesDeMots.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CartesDeMots.entitlements; sourceTree = "<group>"; };
 		92C3AF082C318F7900A49AFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		92C3AF092C31A93E00A49AFF /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
@@ -100,9 +108,11 @@
 				920B5D052BBD72430070E2BC /* ViewModel */,
 				920B5D042BBD723E0070E2BC /* View */,
 				920B5D032BBD72380070E2BC /* Model */,
+				9291E5D92C36BC2600DA3383 /* Utilities */,
 				920B5CF52BBD72300070E2BC /* CartesDeMotsApp.swift */,
 				920B5CF92BBD72310070E2BC /* Assets.xcassets */,
 				920B5CFB2BBD72310070E2BC /* Preview Content */,
+				921ED5FA2C3A760C00EDE003 /* Localizable.strings */,
 			);
 			path = CartesDeMots;
 			sourceTree = "<group>";
@@ -118,9 +128,10 @@
 		920B5D032BBD72380070E2BC /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				920B5D082BBD75380070E2BC /* Tab.swift */,
 				92545E8A2BFF57C000071E57 /* Card.swift */,
 				92C3AF092C31A93E00A49AFF /* Resource.swift */,
+				924064722C35C6D800BBA95B /* Settings.swift */,
+				920B5D082BBD75380070E2BC /* Tab.swift */,
 				92E68EF62BEB9F2200CFDF89 /* ModalHandler.swift */,
 			);
 			path = Model;
@@ -155,6 +166,14 @@
 				92C3AF0B2C31CECF00A49AFF /* LearnViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		9291E5D92C36BC2600DA3383 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				9291E5D72C36BC1F00DA3383 /* HapticManager.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,6 +221,8 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
+				fr,
 			);
 			mainGroup = 920B5CE92BBD72300070E2BC;
 			packageReferences = (
@@ -222,6 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				920B5CFD2BBD72310070E2BC /* Preview Assets.xcassets in Resources */,
+				921ED5FC2C3A760C00EDE003 /* Localizable.strings in Resources */,
 				920B5CFA2BBD72310070E2BC /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -241,7 +263,9 @@
 				920B5D112BBEA9F90070E2BC /* CardItemView.swift in Sources */,
 				92C3AF0A2C31A93E00A49AFF /* Resource.swift in Sources */,
 				92E68EF72BEB9F2200CFDF89 /* ModalHandler.swift in Sources */,
+				924064732C35C6D800BBA95B /* Settings.swift in Sources */,
 				92545E8B2BFF57C000071E57 /* Card.swift in Sources */,
+				9291E5D82C36BC1F00DA3383 /* HapticManager.swift in Sources */,
 				92E68EF92BEBE21D00CFDF89 /* ResourcesViewModel.swift in Sources */,
 				92E68EEB2BEB778900CFDF89 /* ResourceItemView.swift in Sources */,
 				92E68EEF2BEB84A900CFDF89 /* NewLinkView.swift in Sources */,
@@ -259,6 +283,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		921ED5FA2C3A760C00EDE003 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				921ED5FB2C3A760C00EDE003 /* en */,
+				921ED5FD2C3A76A900EDE003 /* fr */,
+				921ED5FE2C3A76AA00EDE003 /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		920B5CFE2BBD72310070E2BC /* Debug */ = {
@@ -313,7 +350,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -370,7 +407,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -387,18 +424,17 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CartesDeMots/CartesDeMots.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"CartesDeMots/Preview Content\"";
 				DEVELOPMENT_TEAM = BQRU8RM77X;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CartesDeMots/Info.plist;
-				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -419,18 +455,17 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CartesDeMots/CartesDeMots.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"CartesDeMots/Preview Content\"";
 				DEVELOPMENT_TEAM = BQRU8RM77X;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CartesDeMots/Info.plist;
-				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

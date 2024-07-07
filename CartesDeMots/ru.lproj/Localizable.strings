@@ -5,3 +5,49 @@
   Created by Timothée LAPOV on 07/07/2024.
   
 */
+//MARK: TabBar
+"tab_words" = "Слова";
+"tab_learn" = "Тренировка";
+"tab_resources" = "Ресурсы";
+"tab_settings" = "Настройки";
+
+//MARK: CardItemView
+"Comment" = "Комментарий";
+"Swipe to delete" = "Провести, чтобы удалить";
+
+//MARK: CardsView
+"Your list of words" = "Список слов";
+
+//MARK: NewWordView
+"New word" = "Новое слово";
+"Foreign word" = "Иностранное слово (невидимая сторона)";
+"Translation" = "Перевод (видимая сторона)";
+"Add the word" = "Добавить слово";
+
+//MARK: LearnView
+"Complexity %d" = "Complexity %d";
+"Show word" = "Показать слово";
+"Easy" = "Легко";
+"Hard" = "Сложно";
+"No words available for learning" = "Нет слов для изучения";
+
+//MARK: ResourcesView
+"Useful links" = "Полезные ссылки";
+
+//MARK: NewLinkView
+"New resource link" = "Новая ссылка на ресурс";
+"Title" = "Заголовок";
+"Link" = "Ссылка";
+"Add the link" = "Добавить ссылку";
+
+//MARK: SettingsView
+"Settings" = "Настройки";
+"Language" = "Язык";
+"Enter language (emoji or name)" = "Введите язык (эмодзи или название)";
+"Startup Page" = "Стартовая страница";
+"How to use the app" = "Как использовать приложение";
+"how_to_alert_text" = "Смахните для удаления\nВсе слова синхронизируются между устройствами и сохраняются после переустановки приложения, если вы входите в тот же аккаунт iCloud\nИзначально все слова имеют одинаковый рейтинг, но он меняется в зависимости от того, легкое слово или сложное\nЛегкие слова показываются все реже, сложные - чаще\nСлова с нулевым рейтингом не показываются";
+"Got it" = "Понятно";
+"Write to developer" = "Написать разработчику";
+"Feedback for CartesDeMots app (v%@)" = "Отзыв о приложении CartesDeMots (версия %@)";
+"emailBody" = "Здравствуйте,\n\nЯ пишу из приложения CartesDeMots.\n\nЯ хочу сообщить об ошибке:\n\nЯ хочу предложить идею:\n\n";

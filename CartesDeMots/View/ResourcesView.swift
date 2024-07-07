@@ -24,6 +24,7 @@ struct ResourcesView: View {
                     .bold()
                 Spacer()
                 Button(action: {
+                    hapticSelection()
                     resourcesViewModel.addViewHandler = ModalHandler()
                 }, label: {
                     Image(systemName: "plus")
@@ -37,18 +38,24 @@ struct ResourcesView: View {
                 })
             }
             .padding(.horizontal)
+            .padding(.bottom, -7)
             
             ScrollView {
                 ForEach(resources) { resource in
                     ResourceItemView(onDelete: {
                         modelContext.delete(resource)
                     }, resource: resource)
+                    .padding(.horizontal)
+                    .padding(.top, 7)
                 }
             }
-            .padding(.horizontal)
+            //.padding(.horizontal)
         }
         .background {
             Image("bgResources")
+                .resizable()
+                .scaledToFill()
+                .ignoresSafeArea()
         }
         .sheet(item: $resourcesViewModel.addViewHandler) {_ in
             NewLinkView(resourcesViewModel: resourcesViewModel)

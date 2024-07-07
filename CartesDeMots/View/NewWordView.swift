@@ -19,7 +19,7 @@ struct NewWordView: View {
     @State private var comment = ""
     
     private var isButtonDisabled: Bool {
-        word.count < 2 || translation.count < 2 ? true : false
+        word.count < 1 || translation.count < 1 ? true : false
     }
     
     var body: some View {
@@ -29,6 +29,7 @@ struct NewWordView: View {
                 Text("New word")
                 Spacer()
                 Button(action: {
+                    hapticSelection()
                     cardsViewModel.addViewHandler = nil
                 }, label: {
                     Image(systemName: "xmark")
@@ -41,15 +42,16 @@ struct NewWordView: View {
             
             Spacer()
             
-            GlassTextFieldView(text: $word, placeholder: "Foreign word")
+            GlassTextFieldView(text: $word, placeholder: NSLocalizedString("Foreign word", comment: "Foreign word"))
             
-            GlassTextFieldView(text: $translation, placeholder: "Translation")
+            GlassTextFieldView(text: $translation, placeholder: NSLocalizedString("Translation", comment: "Translation"))
             
-            GlassTextFieldView(text: $comment, placeholder: "Comment")
+            GlassTextFieldView(text: $comment, placeholder: NSLocalizedString("Comment", comment: "Comment"))
             
             Button(action: {
                 let card = Card(foreignWord: word, translation: translation, comment: comment)
                 modelContext.insert(card)
+                hapticNotification(.success)
                 cardsViewModel.addViewHandler = nil
             }, label: {
                 Text("Add the word")
@@ -71,6 +73,6 @@ struct NewWordView: View {
     }
 }
 
-#Preview {
-    NewWordView(cardsViewModel: CardsViewModel())
-}
+//#Preview {
+//    NewWordView(cardsViewModel: CardsViewModel())
+//}

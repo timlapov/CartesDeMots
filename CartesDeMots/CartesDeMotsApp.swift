@@ -29,8 +29,8 @@ struct CartesDeMotsApp: App {
         
         WindowGroup {
             ContentView()
-                .preferredColorScheme(.light)
-                .modelContainer(for: [Card.self, Resource.self], inMemory: false, isAutosaveEnabled: true, isUndoEnabled: true) { result in
+                //.preferredColorScheme(.light)
+                .modelContainer(for: [Card.self, Resource.self, Settings.self], inMemory: false, isAutosaveEnabled: true, isUndoEnabled: true) { result in
                     switch result {
                     case .success(let success):
                         print("ModelContainer created successfully")

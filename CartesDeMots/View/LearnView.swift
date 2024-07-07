@@ -5,103 +5,24 @@
 //  Created by Timothée LAPOV on 04/04/2024.
 //
 
-//import SwiftUI
-//import SwiftData
-//import Pow
-//
-//struct LearnView: View {
-//    @Query private var cards: [Card]
-//    
-//    @Environment(\.modelContext) private var modelContext
-//    
-//    @State private var translationIsShown = false
-//    
-//    var randomCard: Card {
-//        if let randomCard = cards.randomElement() {
-//            return randomCard
-//        } else {
-//            return Card(foreignWord: "Add the first word to start learning", translation: "Add the first word to start learning", comment: "", rating: 4)
-//        }
-//    }
-//    
-//    var body: some View {
-//        VStack {
-//            HStack{
-//                Text("Training")
-//                    .font(.title)
-//                    .fontDesign(.rounded)
-//                    .bold()
-//                Spacer()
-//            }
-//            .padding(.horizontal)
-//            
-//            Spacer()
-//            
-//            Spacer()
-//            
-//            Text("🇫🇷")
-//                .fontWeight(.light)
-//                .foregroundStyle(.gray)
-//                .padding(.all, 0)
-//            Text(randomCard.translation ?? "")
-//                .padding()
-//            ZStack {
-//                Text(randomCard.foreignWord ?? "")
-//                    .padding(.top, 0)
-//                    .font(.headline)
-//                Button(action: { translationIsShown = true }, label: {
-//                    Text("Show translation")
-//                        .foregroundStyle(.white)
-//                        .frame(maxWidth: .infinity)
-//                        .padding()
-//                        .background {
-//                            Color.orange
-//                                .cornerRadius(10)
-//                        }
-//                        .opacity(translationIsShown ? 0 : 1)
-//                        .conditionalEffect(.repeat(.wiggle(rate: .fast), every: .seconds(3)), condition: true)
-//                    
-//                })
-//                .padding()
-//            }
-//            
-//            Spacer()
-//            
-//            Button(action: {
-//                translationIsShown = false
-//            }, label: {
-//                HStack {
-//                    Text("Next")
-//                        .foregroundStyle(.orange)
-//                    Image(systemName: "chevron.forward")
-//                        .foregroundColor(.orange)
-//                }
-//                .padding()
-//                .background {
-//                    GlassView()
-//                    Color.white.opacity(0.5)
-//                }
-//                .clipShape(Capsule())
-//            })
-//            
-//            Spacer()
-//            
-//        }
-//        .background {
-//            Image("bgLearn")
-//                .resizable()
-//                .scaledToFill()
-//        }
-//    }
-//}
-
 import SwiftUI
 import SwiftData
 import Pow
 
 struct LearnView: View {
     @Environment(\.modelContext) private var modelContext
+    
     @StateObject private var viewModel = LearnViewModel()
+    
+    @Query private var settings: [Settings]
+    
+    @State private var offset: CGFloat = 0
+    @State private var backgroundColor: Color = .clear
+    @State private var isCardVisible = true
+    @State private var language: String = "🏳️"
+    
+    let screenHeight = UIScreen.main.bounds.height
+    let screenWidth = UIScreen.main.bounds.width
     
     var body: some View {
         ZStack {
@@ -116,59 +37,158 @@ struct LearnView: View {
                 if let card = viewModel.currentCard {
                     Spacer()
                     
-                    Text("🇫🇷")
-                        .padding(.all, 0)
-                    Text(card.translation ?? "")
-                        .padding()
-                        .cornerRadius(10)
-                    
                     ZStack {
-                        Text(card.foreignWord ?? "")
-                            .font(.headline)
-                            .padding()
+                        Rectangle()
+                            .fill(Color.red.opacity(0.7))
+                            .frame(height: screenHeight * 0.45)
                             .cornerRadius(10)
+                            .overlay(
+                                Image(systemName: "bolt.heart")
+                                    .foregroundColor(.white)
+                                    .font(.largeTitle)
+                                    .opacity(offset > 0 ? min(offset / 50, 1.0) : 0)
+                            )
+                            .opacity(offset > 0 ? 1 : 0)
                         
-                        if !viewModel.translationIsShown {
-                            Button(action: { viewModel.showTranslation() }, label: {
-                                Text("Show translation")
-                                    .foregroundStyle(.white)
-                                    .frame(maxWidth: .infinity)
+                        Rectangle()
+                            .fill(Color.green.opacity(0.7))
+                            .frame(height: screenHeight * 0.45)
+                            .cornerRadius(10)
+                            .overlay(
+                                Image(systemName: "heart.fill")
+                                    .foregroundColor(.white)
+                                    .font(.largeTitle)
+                                    .opacity(offset < 0 ? min(-offset / 50, 1.0) : 0)
+                                
+                            )
+                            .opacity(offset < 0 ? 1 : 0)
+                        
+                        // Card
+                        if isCardVisible {
+                            VStack(alignment: .center) {
+                                HStack {
+                                    Text(String(format: NSLocalizedString("Complexity %d", comment: "Complexity rating"), card.rating ?? 1))
+                                        .foregroundStyle(.gray)
+                                        .padding()
+                                    Spacer()
+                                    Text(language)
+                                        .font(.title3)
+                                        .foregroundStyle(.gray)
+                                        .padding()
+                                    //Text("\(String(card.rating ?? -1)) offset: \(offset)")
+                                }
+                                Text(card.translation ?? "")
+                                    .font(.title)
+                                    .multilineTextAlignment(.center)
                                     .padding()
-                                    .background(Color.orange)
-                                    .cornerRadius(10)
-                            })
-                            .conditionalEffect(.repeat(.wiggle(rate: .fast), every: .seconds(3)), condition: true)
-                            .padding()
+                                
+                                if viewModel.translationIsShown {
+                                    Text(card.foreignWord ?? "")
+                                        .font(.title2)
+                                        .multilineTextAlignment(.center)
+                                        .foregroundStyle(.gray)
+                                        .padding()
+                                } else {
+                                    Spacer()
+                                    Button(action: {
+                                        withAnimation {
+                                            viewModel.showTranslation()
+                                            hapticSequence()
+                                        }
+                                    }) {
+                                        Text("Show word")
+                                            .foregroundColor(.white)
+                                            .padding()
+                                            .background {
+                                                GlassView()
+                                                Color.orange.opacity(0.9)
+                                            }
+                                            .cornerRadius(10)
+                                    }
+                                    .transition(.movingParts.vanish(.orange))
+                                    .conditionalEffect(.repeat(.wiggle(rate: .fast), every: .seconds(3)), condition: true)
+                                }
+                                
+                                if viewModel.translationIsShown {
+                                    Spacer()
+                                }
+                                
+                                // Buttons Easy and Hard
+                                HStack {
+                                    Button(action: {
+                                        hapticImpact()
+                                        viewModel.updateRatingAndNextCard(isEasy: true)
+                                    }) {
+                                        HStack {
+                                            Image(systemName: "arrow.left")
+                                            Text("Easy")
+                                        }
+                                        .foregroundColor(.green)
+                                        .frame(maxWidth: .infinity)
+                                    }
+                                    
+                                    Rectangle()
+                                        .fill(Color.gray.opacity(0.5))
+                                        .frame(width: 1, height: 30)
+                                    
+                                    Button(action: {
+                                        hapticImpact()
+                                        viewModel.updateRatingAndNextCard(isEasy: false)
+                                    }) {
+                                        HStack {
+                                            Text("Hard")
+                                            Image(systemName: "arrow.right")
+                                        }
+                                        .foregroundColor(.red)
+                                        .frame(maxWidth: .infinity)
+                                    }
+                                }
+                                .padding(.vertical, 10)
+                            }
+                            .frame(height: screenHeight * 0.45)
+                            .frame(maxWidth: .infinity)
+                            .background(GlassView())
+                            .cornerRadius(20)
+                            .shadow(color: .gray, radius: 10)
+                            .offset(x: offset)
+                            .rotationEffect(.degrees(Double(offset) / 20))
+                            .gesture(
+                                DragGesture()
+                                    .onChanged { gesture in
+                                        offset = gesture.translation.width
+                                    }
+                                    .onEnded { _ in
+                                        if abs(offset) > 140 {
+                                            withAnimation(.easeInOut(duration: 0.3)) {
+                                                offset = offset > 0 ? screenWidth : -screenWidth
+                                                hapticImpact()
+                                                isCardVisible = false
+                                            }
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                                                viewModel.updateRatingAndNextCard(isEasy: offset < 0)
+                                                withAnimation(.easeInOut(duration: 0.3)) {
+                                                    offset = 0
+                                                    isCardVisible = true
+                                                }
+                                            }
+                                        } else {
+                                            withAnimation {
+                                                offset = 0
+                                            }
+                                        }
+                                    }
+                            )
+                            .transition(.asymmetric(
+                                insertion: .move(edge: .trailing).combined(with: .opacity),
+                                removal: .move(edge: offset > 0 ? .trailing : .leading).combined(with: .opacity)
+                            ))
                         }
-                    }
-                    
-                    Spacer()
-                    
-                    if viewModel.translationIsShown {
-                        HStack {
-                            Button(action: { viewModel.updateRatingAndNextCard(isEasy: true) }, label: {
-                                Text("Easy")
-                                    .foregroundStyle(.green)
-                                    .padding()
-                                    .background(Color.white.opacity(0.7))
-                                    .cornerRadius(20)
-                            })
-                            
-                            Button(action: { viewModel.updateRatingAndNextCard(isEasy: false) }, label: {
-                                Text("Hard")
-                                    .foregroundStyle(.red)
-                                    .padding()
-                                    .background(Color.white.opacity(0.7))
-                                    .cornerRadius(20)
-                            })
-                        }
-                        .padding()
                     }
                     
                     Spacer()
                 } else {
                     Spacer()
-                    Text("No cards available for learning")
+                    Text("No words available for learning")
                         .foregroundStyle(.gray)
                         .padding()
                     Spacer()
@@ -178,11 +198,18 @@ struct LearnView: View {
         }
         .onAppear {
             viewModel.setModelContext(modelContext)
+            loadLanguageSetting()
+        }
+    }
+    
+    private func loadLanguageSetting() {
+        if let firstSettings = settings.first {
+            language = firstSettings.language ?? "🏳️"
         }
     }
 }
 
 #Preview {
     LearnView()
-        .modelContainer(for: [Card.self, Resource.self])
+        .modelContainer(for: [Card.self, Resource.self, Settings.self])
 }

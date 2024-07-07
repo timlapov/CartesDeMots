@@ -8,19 +8,22 @@
 import SwiftUI
 
 struct ResourceItemView: View {
+    
     @State private var offset: CGFloat = 0
+    @State private var isDragging = false
+    @State private var dragThreshold: CGFloat = 10
+    
     var onDelete: () -> Void
     var resource: Resource
     
     var body: some View {
         ZStack {
-            // Фон с корзиной
+
             if offset < 0 {
                 deleteBackground()
                     .transition(.opacity)
             }
             
-            // Содержимое карточки
             HStack {
                 VStack(alignment: .leading) {
                     Text(resource.title ?? "")
@@ -33,18 +36,17 @@ struct ResourceItemView: View {
             .padding()
             .background(cardBackground())
             .cornerRadius(10)
-            .shadow(color: .black.opacity(0.1), radius: 7)
-            .offset(x: offset)  // Применяем смещение здесь
+            .shadow(color: .black.opacity(0.1), radius: 7, x:  2, y: 2)
+            .offset(x: offset)
         }
         .gesture(
             DragGesture()
                 .onChanged(onChanged)
                 .onEnded(onEnded)
         )
-        .animation(.spring(), value: offset) // Добавляем анимацию
+        .animation(.spring(), value: offset)
     }
     
-    // Функция для отображения фона с корзиной
     private func deleteBackground() -> some View {
         HStack {
             Spacer()
@@ -64,7 +66,6 @@ struct ResourceItemView: View {
         .cornerRadius(10)
     }
     
-    // Функция для отображения фона карточки
     private func cardBackground() -> some View {
         GlassView()
             .background(
@@ -75,19 +76,25 @@ struct ResourceItemView: View {
             )
     }
     
-    // Обработчик изменения положения при свайпе
     private func onChanged(_ value: DragGesture.Value) {
-        // Обновляем смещение только если свайп влево
-        if value.translation.width < 0 {
+        
+        if abs(value.translation.width) > dragThreshold {
+                isDragging = true
+            }
+        
+        if isDragging && value.translation.width < 0 {
             offset = value.translation.width
         }
     }
     
-    // Обработчик окончания свайпа
     private func onEnded(_ value: DragGesture.Value) {
+        isDragging = false
+        
+        
         withAnimation(.spring()) {
             if -offset > UIScreen.main.bounds.width * 0.6 {
                 offset = -UIScreen.main.bounds.width
+                hapticNotification(.warning)
                 onDelete()
             } else {
                 offset = 0

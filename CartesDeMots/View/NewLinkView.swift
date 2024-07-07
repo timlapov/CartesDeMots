@@ -24,11 +24,13 @@ struct NewLinkView: View {
                 Text("New resource link")
                 Spacer()
                 Button(action: {
+                    hapticSelection()
                     resourcesViewModel.addViewHandler = nil
                 }, label: {
                     Image(systemName: "xmark")
                         .foregroundStyle(.orange)
                 })
+                .disabled(isButtonDisabled)
             }
             .font(.title)
             .bold()
@@ -36,13 +38,14 @@ struct NewLinkView: View {
             
             Spacer()
             
-            GlassTextFieldView(text: $title, placeholder: "Title")
+            GlassTextFieldView(text: $title, placeholder: NSLocalizedString("Title", comment: "linkTitle"))
             
-            GlassTextFieldView(text: $link, placeholder: "Link")
+            GlassTextFieldView(text: $link, placeholder: NSLocalizedString("Link", comment: "link"))
             
             Button(action: {
                 let resource = Resource(title: title, link: link)
                 modelContext.insert(resource)
+                hapticNotification(.success)
                 resourcesViewModel.addViewHandler = nil
             }, label: {
                 Text("Add the link")
@@ -64,8 +67,4 @@ struct NewLinkView: View {
         }
         
     }
-}
-
-#Preview {
-    NewLinkView(resourcesViewModel: ResourcesViewModel())
 }

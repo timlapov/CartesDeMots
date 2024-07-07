@@ -5,102 +5,18 @@
 //  Created by Timothée LAPOV on 04/04/2024.
 //
 
-//import SwiftUI
-//
-//struct CardItemView: View {
-//    @State var offsetX: CGFloat = 0
-//    @State var onDelete: ()->()
-//    
-//    var card: Card
-//    
-//    var body: some View {
-//        
-//        ZStack(alignment: .trailing) {
-//            
-//            deleteTrash()
-//            
-//            VStack(alignment: .leading) {
-//                HStack {
-//                    Spacer()
-//                    Text("🇫🇷")
-//                        .fontWeight(.light)
-//                        .foregroundStyle(.gray)
-//                        .padding(.all, 0)
-//                }
-//                Text(card.translation)
-//                    .padding(.top, 0)
-//                    .font(.headline)
-//                Text(card.foreignWord)
-//                    .padding(.top, 1)
-//                
-//                if !card.comment.isEmpty {
-//                    Divider()
-//                    Text("Comment")
-//                        .font(.subheadline)
-//                        .foregroundStyle(.gray)
-//                    Text(card.comment)
-//                        .padding(.top, 2)
-//                }
-//            }
-//            .padding()
-//            .background{
-//                GlassView()
-//                // Color(.white).opacity(0.2)
-//            }
-//            .cornerRadius(10)
-//            .padding(.horizontal)
-//            .padding(.top, 10)
-//            .shadow(color: .black.opacity(0.1), radius: 7)
-//            .offset(x: offsetX)
-//            .gesture(DragGesture()
-//                .onChanged({ value in
-//                    if value.translation.width < 0 {
-//                        offsetX = value.translation.width
-//                    }
-//                })
-//                    .onEnded({ value in
-//                        withAnimation {
-//                            if screenSize().width * 0.65 < -value.translation.width {
-//                                withAnimation {
-//                                    offsetX = -screenSize().width
-//                                    onDelete()
-//                                }
-//                            } else {
-//                                withAnimation {
-//                                    offsetX = .zero
-//                                }
-//                            }
-//                        }
-//                }))
-//        }
-//    }
-//    
-//    @ViewBuilder
-//    func deleteTrash() -> some View {
-//        Image(systemName: "trash.fill")
-//            .resizable()
-//            .frame(width: 10, height: 10)
-//            .offset(x: 10)
-//            .offset(x: offsetX * 0.6)
-//            .scaleEffect(CGSize(
-//                width: -offsetX * 0.006,
-//                height: -offsetX * 0.006
-//            ))
-//    }
-//}
-//
-//#Preview {
-//    ContentView()
-//        .modelContainer(for: Card.self)
-//}
-
 import SwiftUI
+import SwiftData
 
 struct CardItemView: View {
-    @State var offsetX: CGFloat = 0
-    @State var onDelete: ()->()
     
+    @State private var offsetX: CGFloat = 0
+    @State private var isDragging = false
+    @State private var dragThreshold: CGFloat = 10
+    
+    var onDelete: ()->()
     var card: Card
+    var language: String
     
     var body: some View {
         ZStack(alignment: .trailing) {
@@ -125,7 +41,7 @@ struct CardItemView: View {
         VStack(alignment: .leading) {
             HStack {
                 Spacer()
-                Text("🇫🇷")
+                Text(language)
                     .fontWeight(.light)
                     .foregroundStyle(.gray)
                     .padding(.all, 0)
@@ -136,13 +52,13 @@ struct CardItemView: View {
             Text(card.translation ?? "")
                 .padding(.top, 1)
             
-            if ((card.comment?.isEmpty) == nil) {
+            if let comment = card.comment, !comment.isEmpty {
                 Divider()
                 Text("Comment")
                     .font(.subheadline)
                     .foregroundStyle(.gray)
                 Text(card.comment ?? "")
-                    .padding(.top, 2)
+                    
             }
         }
         .padding()
@@ -157,7 +73,7 @@ struct CardItemView: View {
                     )
             )
             .cornerRadius(10)
-            .shadow(color: .black.opacity(0.1), radius: 7)
+            .shadow(color: .black.opacity(0.1), radius: 7, x:  2, y: 2)
     }
     
     private func deleteBackground() -> some View {
@@ -180,15 +96,23 @@ struct CardItemView: View {
     }
     
     private func onChanged(_ value: DragGesture.Value) {
-        if value.translation.width < 0 {
+        if abs(value.translation.width) > dragThreshold {
+            isDragging = true
+        }
+        
+        if isDragging && value.translation.width < 0 {
             offsetX = value.translation.width
         }
     }
     
     private func onEnded(_ value: DragGesture.Value) {
+        
+        isDragging = false
+        
         withAnimation(.spring()) {
             if -offsetX > screenSize().width * 0.6 {
                 offsetX = -screenSize().width
+                hapticNotification(.warning)
                 onDelete()
             } else {
                 offsetX = 0
@@ -197,7 +121,7 @@ struct CardItemView: View {
     }
 }
 
-#Preview {
-    ContentView()
-        .modelContainer(for: Card.self)
-}
+//#Preview {
+//    ContentView()
+//        .modelContainer(for: Card.self)
+//}

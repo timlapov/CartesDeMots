@@ -8,24 +8,27 @@
 import Foundation
 
 enum Tab: String, CaseIterable {
-    case cards = "Cards"
-    case learn = "Training"
-    case resources = "Resources"
-    case settings = "Settings"
+    case words = "tab_words"
+    case learn = "tab_learn"
+    case resources = "tab_resources"
+    case settings = "tab_settings"
     
     var image: String {
         switch self {
             
-        case .cards:
-            "lanyardcard"
+        case .words:
+            "square.2.layers.3d"
         case .learn:
-            "list.bullet.rectangle.portrait"
+            "square.3.layers.3d.down.right"
         case .resources:
-            "archivebox"
+            "link.icloud"
         case .settings:
             "gear"
         }
     }
     
     var index: Int { Tab.allCases.firstIndex(of: self) ?? 0 }
+    var localizedName: String {
+        NSLocalizedString(rawValue, comment: "Tab name")
+    }
 }

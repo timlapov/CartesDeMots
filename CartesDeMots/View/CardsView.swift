@@ -10,10 +10,12 @@ import SwiftData
 
 struct CardsView: View {
     @Query(sort: [SortDescriptor(\Card.addDate, order: .reverse)], animation: .default) private var cards: [Card]
+    @Query private var settings: [Settings]
     
     @Environment(\.modelContext) private var modelContext
     
-    @State var search = ""
+    //@State var search = ""
+    @State private var language: String = "🏳️"
     
     @ObservedObject var cardsViewModel = CardsViewModel()
     
@@ -38,6 +40,7 @@ struct CardsView: View {
                         .bold()
                     Spacer()
                     Button(action: {
+                        hapticSelection()
                         cardsViewModel.addViewHandler = ModalHandler()
                     }, label: {
                         Image(systemName: "plus")
@@ -51,15 +54,17 @@ struct CardsView: View {
                     })
                 }
                 .padding(.horizontal)
+                .padding(.bottom, -7)
                 
                 ScrollView {
                     ForEach(cards) { card in
                         CardItemView(onDelete: {
                             modelContext.delete(card)
-                        }, card: card)
+                        }, card: card, language: language)
+                        .padding(.horizontal)
+                        .padding(.top, 7)
                     }
                 }
-                .padding(.horizontal)
             }
         }
         .sheet(item: $cardsViewModel.addViewHandler) {_ in
@@ -71,12 +76,21 @@ struct CardsView: View {
                 .scaledToFill()
                 .ignoresSafeArea()
         }
+        .onAppear {
+            loadLanguageSetting()
+        }
+    }
+    
+    private func loadLanguageSetting() {
+        if let firstSettings = settings.first {
+            language = firstSettings.language ?? "🏳️"
+        }
     }
 }
 
 #Preview {
     ContentView()
-        .modelContainer(for: [Card.self, Resource.self])
+        .modelContainer(for: [Card.self, Resource.self, Settings.self])
 }
 
 extension View {

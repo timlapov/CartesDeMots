@@ -23,7 +23,7 @@ class LearnViewModel: ObservableObject {
     
     func fetchCards() {
         guard let context = modelContext else { return }
-        let descriptor = FetchDescriptor<Card>(predicate: #Predicate { $0.rating ?? 0 >= 0 })
+        let descriptor = FetchDescriptor<Card>(predicate: #Predicate { $0.rating ?? 0 > 0 })
         do {
             cards = try context.fetch(descriptor)
             print("Fetched \(cards.count) cards")
@@ -88,6 +88,6 @@ class LearnViewModel: ObservableObject {
             print("Failed to save context: \(error)")
         }
         
-        fetchCards() // Обновляем список карточек после изменения рейтинга
+        fetchCards()
     }
 }
