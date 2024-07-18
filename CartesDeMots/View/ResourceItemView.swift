@@ -92,7 +92,7 @@ struct ResourceItemView: View {
         
         
         withAnimation(.spring()) {
-            if -offset > UIScreen.main.bounds.width * 0.6 {
+            if -offset > UIScreen.main.bounds.width * 0.45 {
                 offset = -UIScreen.main.bounds.width
                 hapticNotification(.warning)
                 onDelete()

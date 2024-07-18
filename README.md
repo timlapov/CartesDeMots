@@ -30,7 +30,7 @@ This app helps users learn new words in a foreign language using a flashcard sys
 </div>
 
 ## Installation
-[![Download on the App Store](https://img.shields.io/badge/Download%20on%20the-App%20Store-blue.svg?style=flat-square&logo=apple&logoColor=white)](https://apps.apple.com/fr/app/lexiswipe/id6520391180)
+[![Download on the App Store](https://img.shields.io/badge/Download%20on%20the-App%20Store-blue.svg?style=flat-square&logo=apple&logoColor=white)](https://apps.apple.com/fr/app/lexiswipe/id6520391180)<br>
 OR
 1. Clone the repository
 2. Open the project in Xcode

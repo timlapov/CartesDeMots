@@ -110,7 +110,7 @@ struct CardItemView: View {
         isDragging = false
         
         withAnimation(.spring()) {
-            if -offsetX > screenSize().width * 0.6 {
+            if -offsetX > screenSize().width * 0.45 {
                 offsetX = -screenSize().width
                 hapticNotification(.warning)
                 onDelete()
