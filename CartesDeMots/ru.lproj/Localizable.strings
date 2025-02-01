@@ -25,7 +25,7 @@
 "Add the word" = "Добавить слово";
 
 //MARK: LearnView
-"Complexity %d" = "Complexity %d";
+"Complexity %d" = "Сложность %d";
 "Show word" = "Показать слово";
 "Easy" = "Легко";
 "Hard" = "Сложно";

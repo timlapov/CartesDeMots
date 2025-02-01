@@ -10,11 +10,11 @@ import SwiftData
 
 @Model
 final class Card: Identifiable {
-    let id: UUID?
-    let foreignWord: String?
-    let translation: String?
-    let comment: String?
-    let addDate: Date?
+    var id: UUID?
+    var foreignWord: String?
+    var translation: String?
+    var comment: String?
+    var addDate: Date?
     var rating: Int?
     
     init(foreignWord: String, translation: String, comment: String) {

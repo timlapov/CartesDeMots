@@ -56,15 +56,22 @@ struct CardsView: View {
                 .padding(.horizontal)
                 .padding(.bottom, -7)
                 
-                ScrollView {
-                    ForEach(cards) { card in
-                        CardItemView(onDelete: {
-                            modelContext.delete(card)
-                        }, card: card, language: language)
-                        .padding(.horizontal)
-                        .padding(.top, 7)
+                ScrollView(.vertical, showsIndicators: true) {
+                    LazyVStack(spacing: 0) {
+                        ForEach(cards) { card in
+                            CardItemView(onDelete: {
+                                withAnimation(.spring()) {
+                                    modelContext.delete(card)
+                                }
+                            }, card: card, language: language)
+                            .padding(.horizontal)
+                            .padding(.top, 7)
+                        }
                     }
                 }
+                .scrollContentBackground(.hidden)
+                .scrollDismissesKeyboard(.immediately)
+                .scrollIndicators(.visible)
             }
         }
         .sheet(item: $cardsViewModel.addViewHandler) {_ in

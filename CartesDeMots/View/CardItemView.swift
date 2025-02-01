@@ -12,7 +12,8 @@ struct CardItemView: View {
     
     @State private var offsetX: CGFloat = 0
     @State private var isDragging = false
-    @State private var dragThreshold: CGFloat = 10
+    @State private var initialTouchPoint: CGPoint?
+    @GestureState private var dragState = false
     
     var onDelete: ()->()
     var card: Card
@@ -28,10 +29,42 @@ struct CardItemView: View {
             cardContent()
                 .background(cardBackground())
                 .offset(x: offsetX)
-                .gesture(
-                    DragGesture()
-                        .onChanged(onChanged)
-                        .onEnded(onEnded)
+                .simultaneousGesture(
+                    DragGesture(minimumDistance: 15)
+                        .updating($dragState) { _, state, _ in
+                            state = true
+                        }
+                        .onChanged { value in
+                            if initialTouchPoint == nil {
+                                initialTouchPoint = value.startLocation
+                            }
+                            
+                            // Check if the drag is mostly horizontal
+                            let dragDifference = value.location - (initialTouchPoint ?? .zero)
+                            if abs(dragDifference.x) > abs(dragDifference.y) * 2 {
+                                if !isDragging {
+                                    hapticSelection()
+                                    isDragging = true
+                                }
+                                withAnimation(.interactiveSpring()) {
+                                    offsetX = min(0, value.translation.width)
+                                }
+                            }
+                        }
+                        .onEnded { value in
+                            initialTouchPoint = nil
+                            isDragging = false
+                            
+                            withAnimation(.spring()) {
+                                if -offsetX > screenSize().width * 0.45 {
+                                    offsetX = -screenSize().width
+                                    hapticNotification(.warning)
+                                    onDelete()
+                                } else {
+                                    offsetX = 0
+                                }
+                            }
+                        }
                 )
         }
         .frame(maxWidth: .infinity)
@@ -94,34 +127,10 @@ struct CardItemView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.red.opacity(0.8))
     }
-    
-    private func onChanged(_ value: DragGesture.Value) {
-        if abs(value.translation.width) > dragThreshold {
-            isDragging = true
-        }
-        
-        if isDragging && value.translation.width < 0 {
-            offsetX = value.translation.width
-        }
-    }
-    
-    private func onEnded(_ value: DragGesture.Value) {
-        
-        isDragging = false
-        
-        withAnimation(.spring()) {
-            if -offsetX > screenSize().width * 0.45 {
-                offsetX = -screenSize().width
-                hapticNotification(.warning)
-                onDelete()
-            } else {
-                offsetX = 0
-            }
-        }
-    }
 }
 
-//#Preview {
-//    ContentView()
-//        .modelContainer(for: Card.self)
-//}
+extension CGPoint {
+    static func - (lhs: CGPoint, rhs: CGPoint) -> CGPoint {
+        return CGPoint(x: lhs.x - rhs.x, y: lhs.y - rhs.y)
+    }
+}

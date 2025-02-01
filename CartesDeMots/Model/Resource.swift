@@ -10,10 +10,10 @@ import SwiftData
 
 @Model
 final class Resource: Identifiable {
-    let id: UUID?
-    let title: String?
-    let link: String?
-    let addDate: Date?
+    var id: UUID?
+    var title: String?
+    var link: String?
+    var addDate: Date?
     
     init(title: String, link: String) {
         self.id = UUID()
