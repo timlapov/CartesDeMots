@@ -46,7 +46,7 @@ struct CardItemView: View {
                     .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
-            .glassEffect(in: .rect(cornerRadius: 20))
+            .glassEffect(.regular.interactive(), in: .rect(cornerRadius: 20))
             .overlay {
                 if isExpanded {
                     actionButtons()

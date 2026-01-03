@@ -79,6 +79,7 @@ struct CardsView: View {
                         .padding(.top, 7)
                     }
                 }
+                .padding(.bottom, 100)
             }
             .scrollContentBackground(.hidden)
             .scrollDismissesKeyboard(.immediately)

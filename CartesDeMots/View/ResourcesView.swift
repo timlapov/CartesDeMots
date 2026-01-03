@@ -10,11 +10,11 @@ import SwiftData
 
 struct ResourcesView: View {
     @Query(sort: [SortDescriptor(\Resource.addDate, order: .reverse)], animation: .default) private var resources: [Resource]
-    
+
     @Environment(\.modelContext) private var modelContext
-    
+
     @ObservedObject var resourcesViewModel = ResourcesViewModel()
-    
+
     var body: some View {
         VStack {
             HStack {
@@ -49,7 +49,7 @@ struct ResourcesView: View {
                     })
                     .buttonStyle(.plain)
                 }
-                
+
             }
             .padding(.horizontal)
             .padding(.bottom, -7)

@@ -12,17 +12,24 @@ struct GlassTextFieldView: View {
     var placeholder: String
     
     var body: some View {
-        TextField(placeholder, text: $text)
-            .padding()
-            .background {
-                GlassView()
-                    .background(.white.opacity(0.4))
-            }
-           // .clipShape(Capsule())
-           // .shadow(radius: 7)
-            .cornerRadius(10)
-            .padding(.top, 30)
+        if #available(iOS 26, *) {
+            TextField(placeholder, text: $text)
+                .padding()
+                .glassEffect(in: .capsule)
+                .padding(.top, 20)
+        } else {
+            TextField(placeholder, text: $text)
+                .padding()
+                .background {
+                    GlassView()
+                        .background(.white.opacity(0.4))
+                }
+                .cornerRadius(10)
+                .padding(.top, 30)
+        }
     }
+    
+
 }
 
 #Preview {

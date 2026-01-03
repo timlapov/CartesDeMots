@@ -41,7 +41,7 @@ struct LearnView: View {
                         Rectangle()
                             .fill(Color.red.opacity(0.7))
                             .frame(height: screenHeight * 0.45)
-                            .cornerRadius(10)
+                            .cornerRadius(20)
                             .overlay(
                                 Image(systemName: "bolt.heart")
                                     .foregroundColor(.white)
@@ -53,7 +53,7 @@ struct LearnView: View {
                         Rectangle()
                             .fill(Color.green.opacity(0.7))
                             .frame(height: screenHeight * 0.45)
-                            .cornerRadius(10)
+                            .cornerRadius(20)
                             .overlay(
                                 Image(systemName: "heart.fill")
                                     .foregroundColor(.white)
@@ -96,17 +96,24 @@ struct LearnView: View {
                                             hapticSequence()
                                         }
                                     }) {
-                                        Text("Show word")
-                                            .foregroundColor(.white)
-                                            .padding()
-                                            .background {
-                                                GlassView()
-                                                Color.orange.opacity(0.9)
-                                            }
-                                            .cornerRadius(10)
+                                        if #available(iOS 26.0, *) {
+                                            Text("Show word")
+                                                .bold()
+                                                .padding()
+                                                .glassEffect(in: .capsule)
+                                        } else {
+                                            Text("Show word")
+                                                .foregroundColor(.white)
+                                                .padding()
+                                                .background {
+                                                    GlassView()
+                                                    Color.orange.opacity(0.9)
+                                                }
+                                                .cornerRadius(10)
+                                        }
                                     }
                                     .transition(.movingParts.vanish(.orange))
-                                    .conditionalEffect(.repeat(.wiggle(rate: .fast), every: .seconds(3)), condition: true)
+                                    .conditionalEffect(.repeat(.shake(rate: .fast), every: .seconds(3)), condition: true)
                                 }
                                 
                                 if viewModel.translationIsShown {
@@ -149,7 +156,8 @@ struct LearnView: View {
                             .frame(maxWidth: .infinity)
                             .background(GlassView())
                             .cornerRadius(20)
-                            .shadow(color: .gray, radius: 10)
+                            .compositingGroup()
+                            .shadow(color: .gray.opacity(0.2), radius: 20)
                             .offset(x: offset)
                             .rotationEffect(.degrees(Double(offset) / 20))
                             .gesture(

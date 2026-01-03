@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct ResourceItemView: View {
-    
+
     @State private var offsetX: CGFloat = 0
     @State private var isDragging = false
     @State private var initialTouchPoint: CGPoint?
-    
+
     var onDelete: () -> Void
     var resource: Resource
-    
+
     var body: some View {
         ZStack(alignment: .trailing) {
             // Фон "удаления" (справа), показывается только когда свайпнули влево
@@ -23,7 +23,7 @@ struct ResourceItemView: View {
                 deleteBackground()
                     .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
             }
-            
+
             content()
                 .background(cardBackground())
                 .offset(x: offsetX)
@@ -47,7 +47,7 @@ struct ResourceItemView: View {
                         .onEnded { value in
                             initialTouchPoint = nil
                             isDragging = false
-                            
+
                             withAnimation(.spring()) {
                                 // Если ушли левее, чем ~ 45% экрана — удаляем
                                 if -offsetX > screenSize().width * 0.45 {
@@ -63,7 +63,7 @@ struct ResourceItemView: View {
         }
         .frame(maxWidth: .infinity)
     }
-    
+
     private func content() -> some View {
         VStack(alignment: .leading) {
             Text(resource.title ?? "")
@@ -74,7 +74,7 @@ struct ResourceItemView: View {
         }
         .padding()
     }
-    
+
     // Фон с иконкой "мусорной корзины"
     private func deleteBackground() -> some View {
         HStack {
@@ -97,7 +97,7 @@ struct ResourceItemView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.red.opacity(0.8))
     }
-    
+
     private func cardBackground() -> some View {
         GlassView()
             .background(
@@ -109,7 +109,7 @@ struct ResourceItemView: View {
             .cornerRadius(10)
             .shadow(color: .black.opacity(0.1), radius: 7, x: 2, y: 2)
     }
-    
+
     // Вариант метода для вычисления размера экрана
     private func screenSize() -> CGSize {
         guard let window = UIApplication.shared.connectedScenes.first as? UIWindowScene else {
