@@ -48,6 +48,21 @@
 "How to use the app" = "Comment utiliser l'application";
 "how_to_alert_text" = "Glissez pour supprimer\nTous les mots se synchronisent entre les appareils et sont sauvegardés après la réinstallation de l'application si vous vous connectez au même compte iCloud\nLes mots ont initialement la même note, mais elle change selon que le mot est facile ou difficile\nLes mots faciles sont montrés de moins en moins fréquemment, les difficiles - plus souvent\nLes mots dont le classement est nul ne sont pas affichés";
 "Got it" = "J'ai compris";
-"Write to developer" = "Écrire au développeur";
+"Write to developer" = "Proposer une idée";
 "Feedback for CartesDeMots app (v%@)" = "Commentaires sur l'application CartesDeMots (v%@)";
 "emailBody" = "Bonjour,\n\nJ'écris depuis l'application CartesDeMots.\n\nJe souhaite signaler un bug :\n\nJe souhaite suggérer une idée :\n\n";
+
+//MARK: HowToUseView
+"howto_cards_title" = "Mots";
+"howto_cards_description" = "Ajoutez des mots étrangers et leurs traductions. Chaque carte peut inclure un commentaire facultatif pour le contexte ou des notes.\n\niOS 26+ : Appuyez sur une carte pour afficher les boutons d'action — supprimer, modifier ou réinitialiser la difficulté.\n\niOS 18 et antérieur : Glissez vers la gauche sur une carte pour la supprimer.";
+"howto_learn_title" = "Apprentissage";
+"howto_learn_description" = "Entraînez votre vocabulaire avec des cartes mémoire. Appuyez pour révéler le mot caché, puis marquez-le comme Facile ou Difficile — soit en appuyant sur les boutons, soit en glissant la carte vers la gauche (Facile) ou la droite (Difficile).";
+"howto_resources_title" = "Ressources";
+"howto_resources_description" = "Enregistrez des liens utiles vers des ressources d'apprentissage des langues, des dictionnaires ou tout autre site Web utile.\n\niOS 26+ : Appuyez sur un lien pour afficher le bouton de suppression.\n\niOS 18 et antérieur : Glissez vers la gauche pour supprimer.";
+"howto_gestures_title" = "Synchronisation iCloud";
+"howto_gestures_description" = "Vos données se synchronisent automatiquement via iCloud sur tous vos appareils.";
+"howto_rating_title" = "Système de notation intelligent";
+"howto_rating_description" = "Les mots commencent avec la même note. Les mots faciles apparaissent moins souvent, les mots difficiles plus fréquemment. Les mots avec une note nulle sont masqués de l'entraînement.\n\niOS 26+ : Vous pouvez réinitialiser la note d'un mot en suivant les instructions ci-dessus.";
+
+//MARK: MoreAppsView
+"oatzumi_description" = "Votre compagnon attentif pour les réflexions quotidiennes et le journal de gratitude.";

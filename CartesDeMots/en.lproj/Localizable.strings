@@ -49,6 +49,21 @@
 "How to use the app" = "How to use the app";
 "how_to_alert_text" = "Swipe to delete\nAll words sync between devices and are saved after reinstalling the app if you log in to the same iCloud account\nWords initially have the same rating, but it changes depending on whether the word is easy or difficult\nEasy words are shown less and less frequently, difficult ones - more often\nWords with zero rating are not shown";
 "Got it" = "Got it";
-"Write to developer" = "Write to developer";
+"Write to developer" = "Suggest an Idea";
 "Feedback for CartesDeMots app (v%@)" = "Feedback for CartesDeMots app (v%@)";
 "emailBody" = "Hello,\n\nI'm writing from the CartesDeMots app.\n\nI want to report a bug:\n\nI want to suggest an idea:\n\n";
+
+//MARK: HowToUseView
+"howto_cards_title" = "Words";
+"howto_cards_description" = "Add foreign words and their translations. Each card can include an optional comment for context or notes.\n\niOS 26+: Tap on a card to reveal action buttons — delete, edit, or reset difficulty.\n\niOS 18 and earlier: Swipe left on a card to delete it.";
+"howto_learn_title" = "Training";
+"howto_learn_description" = "Practice your vocabulary with flashcards. Tap to reveal the hidden word, then mark it as Easy or Hard — either by tapping the buttons or swiping the card left (Easy) or right (Hard).";
+"howto_resources_title" = "Resources";
+"howto_resources_description" = "Save useful links to language learning resources, dictionaries, or any helpful websites.\n\niOS 26+: Tap on a link to reveal the delete button.\n\niOS 18 and earlier: Swipe left to delete.";
+"howto_gestures_title" = "iCloud Sync";
+"howto_gestures_description" = "Your data syncs automatically via iCloud across all your devices.";
+"howto_rating_title" = "Smart Rating System";
+"howto_rating_description" = "Words start with the same rating. Easy words appear less often, hard words appear more frequently. Words with zero rating are hidden from training.\n\niOS 26+: You can reset a word's rating using the instructions above.";
+
+//MARK: MoreAppsView
+"oatzumi_description" = "Your mindful companion for daily reflections and gratitude journaling.";
