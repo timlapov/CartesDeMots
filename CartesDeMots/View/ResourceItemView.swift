@@ -12,11 +12,67 @@ struct ResourceItemView: View {
     @State private var offsetX: CGFloat = 0
     @State private var isDragging = false
     @State private var initialTouchPoint: CGPoint?
+    @State private var isExpanded = false
 
     var onDelete: () -> Void
     var resource: Resource
 
     var body: some View {
+        if #available(iOS 26.0, *) {
+            modernResourceView()
+        } else {
+            legacyResourceView()
+        }
+    }
+
+    // MARK: - iOS 26+ Modern Design
+    @available(iOS 26.0, *)
+    private func modernResourceView() -> some View {
+        VStack(spacing: 0) {
+            Button(action: {
+                hapticSelection()
+                withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
+                    isExpanded.toggle()
+                }
+            }) {
+                content()
+                    .blur(radius: isExpanded ? 8 : 0)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
+            .glassEffect(.regular.interactive(), in: .rect(cornerRadius: 20))
+            .overlay {
+                if isExpanded {
+                    actionButtons()
+                }
+            }
+        }
+        .frame(maxWidth: .infinity)
+    }
+
+    @available(iOS 26.0, *)
+    private func actionButtons() -> some View {
+        GlassEffectContainer {
+            Button(action: {
+                hapticNotification(.warning)
+                withAnimation(.spring()) {
+                    isExpanded = false
+                    onDelete()
+                }
+            }) {
+                Image(systemName: "trash.fill")
+                    .font(.title2)
+                    .bold()
+                    .frame(width: 40, height: 40)
+            }
+            .buttonStyle(.glass)
+            .tint(.red)
+        }
+    }
+
+    // MARK: - Legacy iOS Design (iOS 18 and below)
+    private func legacyResourceView() -> some View {
         ZStack(alignment: .trailing) {
             // Фон "удаления" (справа), показывается только когда свайпнули влево
             if offsetX < 0 {
