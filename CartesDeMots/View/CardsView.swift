@@ -60,11 +60,21 @@ struct CardsView: View {
             ScrollView(.vertical, showsIndicators: true) {
                 LazyVStack(spacing: 0) {
                     ForEach(cards) { card in
-                        CardItemView(onDelete: {
-                            withAnimation(.spring()) {
-                                modelContext.delete(card)
-                            }
-                        }, card: card, language: language)
+                        CardItemView(
+                            onDelete: {
+                                withAnimation(.spring()) {
+                                    modelContext.delete(card)
+                                }
+                            },
+                            onEdit: {
+                                cardsViewModel.editCardHandler = (card: card, handler: ModalHandler())
+                            },
+                            onResetRating: {
+                                card.rating = 4
+                            },
+                            card: card,
+                            language: language
+                        )
                         .padding(.horizontal)
                         .padding(.top, 7)
                     }
@@ -83,6 +93,18 @@ struct CardsView: View {
         .ignoresSafeArea(edges: .bottom)
         .sheet(item: $cardsViewModel.addViewHandler) {_ in
             NewWordView(cardsViewModel: cardsViewModel)
+        }
+        .sheet(item: Binding(
+            get: { cardsViewModel.editCardHandler?.handler },
+            set: { newValue in
+                if newValue == nil {
+                    cardsViewModel.editCardHandler = nil
+                }
+            }
+        )) { _ in
+            if let editCard = cardsViewModel.editCardHandler?.card {
+                NewWordView(cardsViewModel: cardsViewModel, existingCard: editCard)
+            }
         }
         .onAppear {
             loadLanguageSetting()

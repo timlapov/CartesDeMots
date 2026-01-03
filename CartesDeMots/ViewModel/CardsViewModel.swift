@@ -11,4 +11,5 @@ import Foundation
 
 class CardsViewModel: ObservableObject {
     @Published var addViewHandler: ModalHandler?
+    @Published var editCardHandler: (card: Card, handler: ModalHandler)?
 }

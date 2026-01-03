@@ -14,6 +14,8 @@ struct NewWordView: View {
     
     @ObservedObject var cardsViewModel: CardsViewModel
     
+    var existingCard: Card? = nil
+    
     @State private var word = ""
     @State private var translation = ""
     @State private var comment = ""
@@ -22,16 +24,20 @@ struct NewWordView: View {
         word.count < 1 || translation.count < 1 ? true : false
     }
     
+    private var isEditMode: Bool {
+        existingCard != nil
+    }
+    
     var body: some View {
         VStack {
             
             HStack {
-                Text("New word")
+                Text(isEditMode ? "Edit word" : "New word")
                 Spacer()
                 if #available(iOS 26.0, *) {
                     Button(action: {
                         hapticSelection()
-                        cardsViewModel.addViewHandler = nil
+                        dismissView()
                     }, label: {
                         Image(systemName: "xmark")
                             .foregroundStyle(.orange)
@@ -40,7 +46,7 @@ struct NewWordView: View {
                 } else {
                     Button(action: {
                         hapticSelection()
-                        cardsViewModel.addViewHandler = nil
+                        dismissView()
                     }, label: {
                         Image(systemName: "xmark")
                             .foregroundStyle(.orange)
@@ -60,19 +66,20 @@ struct NewWordView: View {
             GlassTextFieldView(text: $comment, placeholder: NSLocalizedString("Comment", comment: "Comment"))
             
             Button(action: {
-                let card = Card(foreignWord: word, translation: translation, comment: comment)
-                modelContext.insert(card)
-                hapticNotification(.success)
-                cardsViewModel.addViewHandler = nil
+                if isEditMode {
+                    updateCard()
+                } else {
+                    addCard()
+                }
             }, label: {
                 if #available(iOS 26.0, *) {
-                    Text("Add the word")
+                    Text(isEditMode ? "Update the word" : "Add the word")
                         .padding()
                         .foregroundStyle(isButtonDisabled ? .gray :.orange)
                         .bold()
                         .glassEffect(in: .capsule)
                 } else {
-                    Text("Add the word")
+                    Text(isEditMode ? "Update the word" : "Add the word")
                         .padding()
                         .foregroundStyle(.white)
                         .bold()
@@ -89,6 +96,38 @@ struct NewWordView: View {
         .background {
             Image("bgAdd")
         }
+        .onAppear {
+            loadExistingCard()
+        }
+    }
+    
+    private func loadExistingCard() {
+        if let card = existingCard {
+            word = card.foreignWord ?? ""
+            translation = card.translation ?? ""
+            comment = card.comment ?? ""
+        }
+    }
+    
+    private func addCard() {
+        let card = Card(foreignWord: word, translation: translation, comment: comment)
+        modelContext.insert(card)
+        hapticNotification(.success)
+        dismissView()
+    }
+    
+    private func updateCard() {
+        guard let card = existingCard else { return }
+        card.foreignWord = word
+        card.translation = translation
+        card.comment = comment
+        hapticNotification(.success)
+        dismissView()
+    }
+    
+    private func dismissView() {
+        cardsViewModel.addViewHandler = nil
+        cardsViewModel.editCardHandler = nil
     }
 }
 
