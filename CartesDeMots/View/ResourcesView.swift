@@ -39,17 +39,19 @@ struct ResourcesView: View {
             }
             .padding(.horizontal)
             .padding(.bottom, -7)
-            
+
             ScrollView {
-                ForEach(resources) { resource in
-                    ResourceItemView(onDelete: {
-                        modelContext.delete(resource)
-                    }, resource: resource)
-                    .padding(.horizontal)
-                    .padding(.top, 7)
+                LazyVStack(spacing: 0) {
+                    ForEach(resources) { resource in
+                        ResourceItemView(onDelete: {
+                            modelContext.delete(resource)
+                        }, resource: resource)
+                        .padding(.horizontal)
+                        .padding(.top, 7)
+                    }
                 }
             }
-            //.padding(.horizontal)
+            .scrollContentBackground(.hidden)
         }
         .background {
             Image("bgResources")
@@ -57,6 +59,7 @@ struct ResourcesView: View {
                 .scaledToFill()
                 .ignoresSafeArea()
         }
+        .ignoresSafeArea(edges: .bottom)
         .sheet(item: $resourcesViewModel.addViewHandler) {_ in
             NewLinkView(resourcesViewModel: resourcesViewModel)
         }

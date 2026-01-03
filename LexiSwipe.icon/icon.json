@@ -1,0 +1,102 @@
+{
+  "fill" : {
+    "linear-gradient" : [
+      "extended-srgb:1.00000,0.80000,0.00000,1.00000",
+      "extended-srgb:1.00000,0.55294,0.15686,1.00000"
+    ]
+  },
+  "groups" : [
+    {
+      "layers" : [
+        {
+          "glass" : false,
+          "image-name" : "яп.png",
+          "name" : "яп",
+          "position" : {
+            "scale" : 0.6,
+            "translation-in-points" : [
+              176.99531249999995,
+              4.795312500000023
+            ]
+          }
+        },
+        {
+          "blend-mode" : "normal",
+          "fill-specializations" : [
+            {
+              "value" : {
+                "linear-gradient" : [
+                  "extended-srgb:1.00000,0.55294,0.15686,1.00000",
+                  "extended-srgb:1.00000,0.80000,0.00000,1.00000"
+                ]
+              }
+            },
+            {
+              "appearance" : "dark",
+              "value" : {
+                "linear-gradient" : [
+                  "extended-gray:0.00000,1.00000",
+                  "extended-gray:0.00000,1.00000"
+                ]
+              }
+            }
+          ],
+          "glass" : false,
+          "image-name" : "ф.png",
+          "name" : "ф",
+          "position" : {
+            "scale" : 0.8,
+            "translation-in-points" : [
+              -175.3828125,
+              2.6953125
+            ]
+          }
+        },
+        {
+          "fill" : {
+            "solid" : "extended-gray:1.00000,1.00000"
+          },
+          "glass" : true,
+          "image-name" : "book.png",
+          "name" : "book",
+          "opacity" : 0.93,
+          "position" : {
+            "scale" : 0.8,
+            "translation-in-points" : [
+              -166.8125,
+              -1.2421875
+            ]
+          }
+        },
+        {
+          "fill" : {
+            "solid" : "extended-gray:1.00000,1.00000"
+          },
+          "image-name" : "asd.png",
+          "name" : "asd",
+          "position" : {
+            "scale" : 0.7,
+            "translation-in-points" : [
+              172.1953125,
+              2.345312500000091
+            ]
+          }
+        }
+      ],
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
+      },
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.5
+      }
+    }
+  ],
+  "supported-platforms" : {
+    "circles" : [
+      "watchOS"
+    ],
+    "squares" : "shared"
+  }
+}

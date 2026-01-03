@@ -1,5 +1,5 @@
 //
-//  ListView.swift
+//  CardsView.swift
 //  CartesDeMots
 //
 //  Created by Timothée LAPOV on 03/04/2024.
@@ -20,25 +20,24 @@ struct CardsView: View {
     @ObservedObject var cardsViewModel = CardsViewModel()
     
     var body: some View {
-        ZStack {
-            VStack{
-                HStack {
-                    //                    HStack {
-                    //                        Image(systemName: "magnifyingglass")
-                    //                        TextField("Search", text: $search)
-                    //                    }
-                    //                    .padding(.horizontal)
-                    //                    .padding(.vertical, 7)
-                    //                    .background {
-                    //                        GlassView()
-                    //                        Color.gray.opacity(0.1)
-                    //                    }
-                    //                    .clipShape(Capsule())
-                    Text("Your list of words")
-                        .font(.title)
-                        .fontDesign(.rounded)
-                        .bold()
-                    Spacer()
+        VStack {
+            HStack {
+                Text("Your list of words")
+                    .font(.title)
+                    .fontDesign(.rounded)
+                    .bold()
+                Spacer()
+                if #available(iOS 26, *) {
+                    Button(action: {
+                        hapticSelection()
+                        cardsViewModel.addViewHandler = ModalHandler()
+                    }, label: {
+                        Image(systemName: "plus")
+                            .padding(3)
+                    })
+                    .buttonStyle(.glassProminent)
+                    .tint(Color(.orange))
+                } else {
                     Button(action: {
                         hapticSelection()
                         cardsViewModel.addViewHandler = ModalHandler()
@@ -52,36 +51,38 @@ struct CardsView: View {
                                     .opacity(0.95)
                             }
                     })
+                    .buttonStyle(.plain)
                 }
-                .padding(.horizontal)
-                .padding(.bottom, -7)
-                
-                ScrollView(.vertical, showsIndicators: true) {
-                    LazyVStack(spacing: 0) {
-                        ForEach(cards) { card in
-                            CardItemView(onDelete: {
-                                withAnimation(.spring()) {
-                                    modelContext.delete(card)
-                                }
-                            }, card: card, language: language)
-                            .padding(.horizontal)
-                            .padding(.top, 7)
-                        }
+            }
+            .padding(.horizontal)
+            .padding(.bottom, -7)
+
+            ScrollView(.vertical, showsIndicators: true) {
+                LazyVStack(spacing: 0) {
+                    ForEach(cards) { card in
+                        CardItemView(onDelete: {
+                            withAnimation(.spring()) {
+                                modelContext.delete(card)
+                            }
+                        }, card: card, language: language)
+                        .padding(.horizontal)
+                        .padding(.top, 7)
                     }
                 }
-                .scrollContentBackground(.hidden)
-                .scrollDismissesKeyboard(.immediately)
-                .scrollIndicators(.visible)
             }
-        }
-        .sheet(item: $cardsViewModel.addViewHandler) {_ in
-            NewWordView(cardsViewModel: cardsViewModel)
+            .scrollContentBackground(.hidden)
+            .scrollDismissesKeyboard(.immediately)
+            .scrollIndicators(.visible)
         }
         .background {
             Image("bgList")
                 .resizable()
                 .scaledToFill()
                 .ignoresSafeArea()
+        }
+        .ignoresSafeArea(edges: .bottom)
+        .sheet(item: $cardsViewModel.addViewHandler) {_ in
+            NewWordView(cardsViewModel: cardsViewModel)
         }
         .onAppear {
             loadLanguageSetting()
