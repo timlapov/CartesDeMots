@@ -28,17 +28,28 @@ struct NewWordView: View {
             HStack {
                 Text("New word")
                 Spacer()
-                Button(action: {
-                    hapticSelection()
-                    cardsViewModel.addViewHandler = nil
-                }, label: {
-                    Image(systemName: "xmark")
-                        .foregroundStyle(.orange)
-                })
+                if #available(iOS 26.0, *) {
+                    Button(action: {
+                        hapticSelection()
+                        cardsViewModel.addViewHandler = nil
+                    }, label: {
+                        Image(systemName: "xmark")
+                            .foregroundStyle(.orange)
+                    })
+                    .buttonStyle(.glass)
+                } else {
+                    Button(action: {
+                        hapticSelection()
+                        cardsViewModel.addViewHandler = nil
+                    }, label: {
+                        Image(systemName: "xmark")
+                            .foregroundStyle(.orange)
+                    })
+                }
             }
-            .font(.title)
-            .bold()
-            .fontDesign(.rounded)
+                    .font(.title)
+                    .bold()
+                    .fontDesign(.rounded)
             
             Spacer()
             
@@ -54,14 +65,22 @@ struct NewWordView: View {
                 hapticNotification(.success)
                 cardsViewModel.addViewHandler = nil
             }, label: {
-                Text("Add the word")
-                    .padding()
-                    .foregroundStyle(.white)
-                    .bold()
-                    .background {
-                        isButtonDisabled ? Color.gray : Color.orange
-                    }
-                    .clipShape(Capsule())
+                if #available(iOS 26.0, *) {
+                    Text("Add the word")
+                        .padding()
+                        .foregroundStyle(isButtonDisabled ? .gray :.orange)
+                        .bold()
+                        .glassEffect(in: .capsule)
+                } else {
+                    Text("Add the word")
+                        .padding()
+                        .foregroundStyle(.white)
+                        .bold()
+                        .background {
+                            isButtonDisabled ? Color.gray : Color.orange
+                        }
+                        .clipShape(Capsule())
+                }
             })
             .padding(.top)
             .disabled(isButtonDisabled)

@@ -23,19 +23,33 @@ struct ResourcesView: View {
                     .fontDesign(.rounded)
                     .bold()
                 Spacer()
-                Button(action: {
-                    hapticSelection()
-                    resourcesViewModel.addViewHandler = ModalHandler()
-                }, label: {
-                    Image(systemName: "plus")
-                        .foregroundColor(.white)
-                        .padding(7)
-                        .background {
-                            Circle()
-                                .fill(.orange)
-                                .opacity(0.95)
-                        }
-                })
+                if #available(iOS 26, *) {
+                    Button(action: {
+                        hapticSelection()
+                        resourcesViewModel.addViewHandler = ModalHandler()
+                    }, label: {
+                        Image(systemName: "plus")
+                            .padding(3)
+                    })
+                    .buttonStyle(.glassProminent)
+                    .tint(Color(.orange))
+                } else {
+                    Button(action: {
+                        hapticSelection()
+                        resourcesViewModel.addViewHandler = ModalHandler()
+                    }, label: {
+                        Image(systemName: "plus")
+                            .foregroundColor(.white)
+                            .padding(7)
+                            .background {
+                                Circle()
+                                    .fill(.orange)
+                                    .opacity(0.95)
+                            }
+                    })
+                    .buttonStyle(.plain)
+                }
+                
             }
             .padding(.horizontal)
             .padding(.bottom, -7)

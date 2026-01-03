@@ -23,14 +23,25 @@ struct NewLinkView: View {
             HStack {
                 Text("New resource link")
                 Spacer()
-                Button(action: {
-                    hapticSelection()
-                    resourcesViewModel.addViewHandler = nil
-                }, label: {
-                    Image(systemName: "xmark")
-                        .foregroundStyle(.orange)
-                })
-                .disabled(isButtonDisabled)
+                if #available(iOS 26.0, *) {
+                    Button(action: {
+                        hapticSelection()
+                        resourcesViewModel.addViewHandler = nil
+                    }, label: {
+                        Image(systemName: "xmark")
+                            .foregroundStyle(.orange)
+                    })
+                    .buttonStyle(.glass)
+                } else {
+                    Button(action: {
+                        hapticSelection()
+                        resourcesViewModel.addViewHandler = nil
+                    }, label: {
+                        Image(systemName: "xmark")
+                            .foregroundStyle(.orange)
+                    })
+                    .buttonStyle(.borderless)
+                }
             }
             .font(.title)
             .bold()
@@ -48,14 +59,22 @@ struct NewLinkView: View {
                 hapticNotification(.success)
                 resourcesViewModel.addViewHandler = nil
             }, label: {
-                Text("Add the link")
-                    .padding()
-                    .foregroundStyle(.white)
-                    .bold()
-                    .background {
-                        isButtonDisabled ? Color.gray : Color.orange
-                    }
-                    .clipShape(Capsule())
+                if #available(iOS 26.0, *) {
+                    Text("Add the link")
+                        .padding()
+                        .foregroundStyle(isButtonDisabled ? .gray :.orange)
+                        .bold()
+                        .glassEffect(in: .capsule)
+                } else {
+                    Text("Add the link")
+                        .padding()
+                        .foregroundStyle(.white)
+                        .bold()
+                        .background {
+                            isButtonDisabled ? Color.gray : Color.orange
+                        }
+                        .clipShape(Capsule())
+                }
             })
             .padding(.top)
     
