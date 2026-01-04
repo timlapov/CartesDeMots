@@ -64,5 +64,9 @@
 "howto_rating_title" = "Système de notation intelligent";
 "howto_rating_description" = "Les mots commencent avec la même note. Les mots faciles apparaissent moins souvent, les mots difficiles plus fréquemment. Les mots avec une note nulle sont masqués de l'entraînement.\n\niOS 26+ : Vous pouvez réinitialiser la note d'un mot en suivant les instructions ci-dessus.";
 
+//MARK: SearchView
+"search_prompt_title" = "Rechercher des mots";
+"search_prompt_description" = "Entrez un mot, une traduction ou un commentaire pour rechercher";
+
 //MARK: MoreAppsView
 "oatzumi_description" = "Votre compagnon attentif pour les réflexions quotidiennes et le journal de gratitude.";

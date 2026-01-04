@@ -11,12 +11,11 @@ import SwiftData
 struct CardsView: View {
     @Query(sort: [SortDescriptor(\Card.addDate, order: .reverse)], animation: .default) private var cards: [Card]
     @Query private var settings: [Settings]
-    
+
     @Environment(\.modelContext) private var modelContext
-    
-    //@State var search = ""
+
     @State private var language: String = "🏳️"
-    
+
     @ObservedObject var cardsViewModel = CardsViewModel()
     
     var body: some View {

@@ -65,5 +65,9 @@
 "howto_rating_title" = "Smart Rating System";
 "howto_rating_description" = "Words start with the same rating. Easy words appear less often, hard words appear more frequently. Words with zero rating are hidden from training.\n\niOS 26+: You can reset a word's rating using the instructions above.";
 
+//MARK: SearchView
+"search_prompt_title" = "Search for Words";
+"search_prompt_description" = "Enter a word, translation, or comment to search";
+
 //MARK: MoreAppsView
 "oatzumi_description" = "Your mindful companion for daily reflections and gratitude journaling.";

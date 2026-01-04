@@ -13,6 +13,7 @@ struct MainTabView: View {
     @Query private var settings: [Settings]
 
     @State private var activeTab = Tab.words
+    @State private var searchText = ""
 
     init() {
         if #unavailable(iOS 26) {
@@ -38,32 +39,33 @@ struct MainTabView: View {
     // MARK: - iOS 26+ (LiquidGlass)
     @available(iOS 26, *)
     private var modernTabView: some View {
-        TabView(selection: $activeTab) {
-            CardsView()
-                .tabItem {
-                    Label(Tab.words.localizedName, systemImage: Tab.words.image)
+        TabView {
+            SwiftUI.Tab(Tab.words.localizedName, systemImage: Tab.words.image) {
+                CardsView()
+            }
+
+            SwiftUI.Tab(Tab.learn.localizedName, systemImage: Tab.learn.image) {
+                LearnView()
+            }
+
+            SwiftUI.Tab(Tab.resources.localizedName, systemImage: Tab.resources.image) {
+                ResourcesView()
+            }
+
+            SwiftUI.Tab(Tab.settings.localizedName, systemImage: Tab.settings.image) {
+                SettingsView()
+            }
+
+            SwiftUI.Tab(NSLocalizedString("tab_search", comment: ""), systemImage: "magnifyingglass", role: .search) {
+                NavigationStack {
+                    SearchView(searchText: $searchText)
+                        //.navigationTitle(NSLocalizedString("tab_search", comment: ""))
                 }
-                .tag(Tab.words)
-            
-            LearnView()
-                .tabItem {
-                    Label(Tab.learn.localizedName, systemImage: Tab.learn.image)
-                }
-                .tag(Tab.learn)
-            
-            ResourcesView()
-                .tabItem {
-                    Label(Tab.resources.localizedName, systemImage: Tab.resources.image)
-                }
-                .tag(Tab.resources)
-            
-            SettingsView()
-                .tabItem {
-                    Label(Tab.settings.localizedName, systemImage: Tab.settings.image)
-                }
-                .tag(Tab.settings)
+            }
         }
+        .searchable(text: $searchText)
         .tint(.orange)
+        .tabBarMinimizeBehavior(.onScrollDown)
     }
 
     // MARK: - iOS 18 and earlier (Custom TabBar)
@@ -82,7 +84,7 @@ struct MainTabView: View {
                 })
 
             HStack {
-                ForEach(Tab.allCases, id: \.self) {tab in
+                ForEach(Tab.allCases, id: \.self) { tab in
                     Spacer()
                     TabBarItemView(tab: tab, activeTab: $activeTab)
                     Spacer()

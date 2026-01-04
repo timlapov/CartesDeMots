@@ -106,6 +106,7 @@ struct SettingsView: View {
         .onAppear(perform: loadSettings)
         .onChange(of: language) { saveSettings() }
         .onChange(of: startupTab) { saveSettings() }
+
     }
 
     // MARK: - App Header View
