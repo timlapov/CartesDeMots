@@ -41,16 +41,21 @@
 "Add the link" = "Ajouter le lien";
 
 //MARK: SettingsView
+"More Apps" = "Autres apps";
 "Settings" = "Réglages";
 "Language" = "Langue";
 "Enter language (emoji or name)" = "Entrez la langue (emoji ou nom)";
 "Startup Page" = "Page de démarrage";
-"How to use the app" = "Comment utiliser l'application";
+"How to Use" = "Guide d'utilisation";
 "how_to_alert_text" = "Glissez pour supprimer\nTous les mots se synchronisent entre les appareils et sont sauvegardés après la réinstallation de l'application si vous vous connectez au même compte iCloud\nLes mots ont initialement la même note, mais elle change selon que le mot est facile ou difficile\nLes mots faciles sont montrés de moins en moins fréquemment, les difficiles - plus souvent\nLes mots dont le classement est nul ne sont pas affichés";
 "Got it" = "J'ai compris";
 "Write to developer" = "Proposer une idée";
-"Feedback for CartesDeMots app (v%@)" = "Commentaires sur l'application CartesDeMots (v%@)";
-"emailBody" = "Bonjour,\n\nJ'écris depuis l'application CartesDeMots.\n\nJe souhaite signaler un bug :\n\nJe souhaite suggérer une idée :\n\n";
+"Feedback" = "Commentaires";
+"Review on the App Store" = "Évaluer sur l'App Store";
+"General" = "Général";
+"System Settings" = "Réglages système";
+"Feedback for LexiSwipe app (v%@)" = "Commentaires sur l'application LexiSwipe (v%@)";
+"emailBody" = "Bonjour,\n\nJ'écris depuis l'application LexiSwipe.\n\nJe souhaite signaler un bug :\n\nJe souhaite suggérer une idée :\n\n";
 
 //MARK: HowToUseView
 "howto_cards_title" = "Mots";
@@ -67,6 +72,3 @@
 //MARK: SearchView
 "search_prompt_title" = "Rechercher des mots";
 "search_prompt_description" = "Entrez un mot, une traduction ou un commentaire pour rechercher";
-
-//MARK: MoreAppsView
-"oatzumi_description" = "Votre compagnon attentif pour les réflexions quotidiennes et le journal de gratitude.";

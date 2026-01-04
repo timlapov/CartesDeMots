@@ -132,9 +132,9 @@ struct SettingsView: View {
             }
 
             VStack(alignment: .leading, spacing: 4) {
-                Text("Cartes de Mots")
+                Text("LexiSwipe")
                     .font(.headline)
-                Text("\(appVersion) (\(buildNumber))")
+                Text("\(appVersion)")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
             }
@@ -189,7 +189,7 @@ struct SettingsView: View {
 
     private func writeToDeveloper() {
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown"
-        let subject = String(format: NSLocalizedString("Feedback for CartesDeMots app (v%@)", comment: "Email subject"), appVersion)
+        let subject = String(format: NSLocalizedString("Feedback for LexiSwipe app (v%@)", comment: "Email subject"), appVersion)
         let body = String(format: NSLocalizedString("emailBody", comment: "Email body"))
         let recipient = "lapov.art@gmail.com"
 

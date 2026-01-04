@@ -42,16 +42,21 @@
 "Add the link" = "Add the link";
 
 //MARK: SettingsView
+"More Apps" = "More Apps";
 "Settings" = "Settings";
 "Language" = "Language";
 "Enter language (emoji or name)" = "Enter language (emoji or name)";
 "Startup Page" = "Startup Page";
-"How to use the app" = "How to use the app";
+"How to Use" = "How to Use";
 "how_to_alert_text" = "Swipe to delete\nAll words sync between devices and are saved after reinstalling the app if you log in to the same iCloud account\nWords initially have the same rating, but it changes depending on whether the word is easy or difficult\nEasy words are shown less and less frequently, difficult ones - more often\nWords with zero rating are not shown";
 "Got it" = "Got it";
 "Write to developer" = "Suggest an Idea";
-"Feedback for CartesDeMots app (v%@)" = "Feedback for CartesDeMots app (v%@)";
-"emailBody" = "Hello,\n\nI'm writing from the CartesDeMots app.\n\nI want to report a bug:\n\nI want to suggest an idea:\n\n";
+"Feedback" = "Feedback";
+"Review on the App Store" = "Review on the App Store";
+"General" = "General";
+"System Settings" = "System Settings";
+"Feedback for LexiSwipe app (v%@)" = "Feedback for LexiSwipe app (v%@)";
+"emailBody" = "Hello,\n\nI'm writing from the LexiSwipe app.\n\nI want to report a bug:\n\nI want to suggest an idea:\n\n";
 
 //MARK: HowToUseView
 "howto_cards_title" = "Words";
@@ -68,6 +73,3 @@
 //MARK: SearchView
 "search_prompt_title" = "Search for Words";
 "search_prompt_description" = "Enter a word, translation, or comment to search";
-
-//MARK: MoreAppsView
-"oatzumi_description" = "Your mindful companion for daily reflections and gratitude journaling.";

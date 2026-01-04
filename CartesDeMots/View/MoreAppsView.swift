@@ -12,12 +12,17 @@ struct MoreAppsView: View {
 
     private let apps: [AppInfo] = [
         AppInfo(
-            name: "Le choix",
-            description: NSLocalizedString("Le choix", comment: ""),
-            appStoreID: "000",
+            name: "The Choice: yes or no",
+            //description: NSLocalizedString("the-choice-description", comment: ""),
+            appStoreID: "6475051206",
             iconName: "lechoix_icon"
+        ),
+        AppInfo(
+            name: "MotiWise: AI-coach",
+            //description: NSLocalizedString("the-choice-description", comment: ""),
+            appStoreID: "6745251400",
+            iconName: "motiwise_icon"
         )
-        // Add more apps here
     ]
 
     var body: some View {
@@ -48,10 +53,10 @@ struct MoreAppsView: View {
                         Text(app.name)
                             .font(.headline)
                             .foregroundStyle(.primary)
-                        Text(app.description)
-                            .font(.subheadline)
-                            .foregroundStyle(.secondary)
-                            .lineLimit(2)
+//                        Text(app.description)
+//                            .font(.subheadline)
+//                            .foregroundStyle(.secondary)
+//                            .lineLimit(2)
                     }
 
                     Spacer()
@@ -77,7 +82,7 @@ struct MoreAppsView: View {
 struct AppInfo: Identifiable {
     let id = UUID()
     let name: String
-    let description: String
+    //let description: String
     let appStoreID: String
     let iconName: String
 }
