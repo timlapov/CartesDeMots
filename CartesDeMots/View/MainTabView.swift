@@ -61,9 +61,10 @@ struct MainTabView: View {
                     SearchView(searchText: $searchText)
                         //.navigationTitle(NSLocalizedString("tab_search", comment: ""))
                 }
+                .searchable(text: $searchText)
             }
+            
         }
-        .searchable(text: $searchText)
         .tint(.orange)
         .tabBarMinimizeBehavior(.onScrollDown)
     }
