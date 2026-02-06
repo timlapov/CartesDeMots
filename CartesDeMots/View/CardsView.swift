@@ -16,7 +16,7 @@ struct CardsView: View {
 
     @State private var language: String = "🏳️"
 
-    @ObservedObject var cardsViewModel = CardsViewModel()
+    @StateObject var cardsViewModel = CardsViewModel()
     
     var body: some View {
         VStack {
