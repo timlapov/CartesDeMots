@@ -17,12 +17,26 @@
 
 //MARK: CardsView
 "Your list of words" = "Список слов";
+"All words" = "Все слова";
+"Manage categories" = "Управление категориями";
+
+//MARK: CategoriesView
+"Categories" = "Категории";
+"New category" = "Новая категория";
+"No categories yet" = "Категорий пока нет";
+"Rename category" = "Переименовать категорию";
+"Rename" = "Переименовать";
+"Cancel" = "Отмена";
+"Delete" = "Удалить";
+"Delete category \"%@\"?" = "Удалить категорию «%@»?";
+"The words will be kept without a category" = "Слова сохранятся без категории";
 
 //MARK: NewWordView
 "New word" = "Новое слово";
 "Foreign word" = "Иностранное слово (невидимая сторона)";
 "Translation" = "Перевод (видимая сторона)";
 "Add the word" = "Добавить слово";
+"No category" = "Без категории";
 
 //MARK: LearnView
 "Complexity %d" = "Сложность %d";

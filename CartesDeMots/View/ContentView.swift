@@ -15,5 +15,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-        .modelContainer(for: [Card.self, Resource.self, Settings.self])
+        .modelContainer(for: [Card.self, Category.self, Resource.self, Settings.self])
 }

@@ -41,16 +41,16 @@ struct CartesDeMotsApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .modelContainer(for: [Card.self, Resource.self, Settings.self]) { result in
+                .modelContainer(for: [Card.self, Category.self, Resource.self, Settings.self]) { result in
                     switch result {
                     case .success(let container):
                         // Включаем автоматическое сохранение
                         container.mainContext.autosaveEnabled = true
                         print("✅ ModelContainer successfully created")
-                        
+
                         // Проверяем статус CloudKit
                         checkCloudKitStatus()
-                        
+
                     case .failure(let error):
                         print("🛑 Error creating ModelContainer: \(error.localizedDescription)")
                     }
@@ -74,10 +74,18 @@ struct CartesDeMotsApp: App {
             @unknown default:
                 print("⚠️ Unknown iCloud status")
             }
-            
+
             if let error = error {
                 print("🛑 ERROR CloudKit: \(error.localizedDescription)")
             }
         }
     }
+}
+
+/// Ключи `@AppStorage` (UserDefaults), общие для нескольких экранов.
+/// Хранится на устройстве (не в iCloud), чтобы выбор не «перетекал» между устройствами.
+enum AppStorageKeys {
+    /// Выбранная категория: UUID в виде строки, пустая строка = «Все слова».
+    /// Общий для главного экрана (CardsView) и тренировки (LearnView) — держит их выбор синхронным.
+    static let selectedCategoryID = "selectedCategoryID"
 }

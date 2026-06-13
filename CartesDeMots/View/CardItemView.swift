@@ -171,12 +171,19 @@ struct CardItemView: View {
     
     private func cardContent() -> some View {
         VStack(alignment: .leading) {
-            HStack {
-                Spacer()
-                Text(language)
-                    .fontWeight(.light)
-                    .foregroundStyle(.gray)
-                    .padding(.all, 0)
+
+            if let categoryName = card.category?.name, !categoryName.isEmpty {
+                HStack {
+                    Spacer()
+                    HStack(spacing: 3) {
+                        Image(systemName: "folder.fill")
+                            .font(.caption2)
+                        Text(categoryName)
+                            .font(.caption)
+                            .lineLimit(1)
+                    }
+                    .foregroundStyle(.orange)
+                }
             }
             Text(card.foreignWord ?? "")
                 .padding(.top, 0)
@@ -237,7 +244,7 @@ extension CGPoint {
 
 #Preview("Card with comment") {
     let config = ModelConfiguration(isStoredInMemoryOnly: true)
-    let container = try! ModelContainer(for: Card.self, configurations: config)
+    let container = try! ModelContainer(for: Card.self, Category.self, configurations: config)
     
     let mockCard = Card(
         foreignWord: "Bonjour",
@@ -270,7 +277,7 @@ extension CGPoint {
 
 #Preview("Card without comment") {
     let config = ModelConfiguration(isStoredInMemoryOnly: true)
-    let container = try! ModelContainer(for: Card.self, configurations: config)
+    let container = try! ModelContainer(for: Card.self, Category.self, configurations: config)
     
     let mockCard = Card(
         foreignWord: "Merci",
@@ -303,7 +310,7 @@ extension CGPoint {
 
 #Preview("Multiple Cards") {
     let config = ModelConfiguration(isStoredInMemoryOnly: true)
-    let container = try! ModelContainer(for: Card.self, configurations: config)
+    let container = try! ModelContainer(for: Card.self, Category.self, configurations: config)
     
     let mockCards = [
         Card(foreignWord: "Bonjour", translation: "Hello", comment: "A common French greeting"),

@@ -51,6 +51,9 @@ struct SettingsView: View {
 
                 // MARK: - Customization
                 Section("Customization") {
+                    // Настройка языкового «символа» скрыта из UI. Модель Settings.language не трогаем:
+                    // значение продолжает храниться, логика load/save цела. Чтобы вернуть — раскомментировать блок.
+                    /*
                     HStack {
                         Label("Language", systemImage: "globe")
                         Spacer()
@@ -63,9 +66,10 @@ struct SettingsView: View {
                                 }
                             }
                     }
+                    */
 
                     Picker(selection: $startupTab) {
-                        ForEach(Tab.allCases, id: \.self) { tab in
+                        ForEach(Tab.mainTabs, id: \.self) { tab in
                             Text(tab.localizedName).tag(tab)
                         }
                     } label: {

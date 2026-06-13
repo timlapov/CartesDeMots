@@ -44,3 +44,22 @@ struct GlassView: UIViewRepresentable {
         }
     }
 }
+
+extension View {
+    /// Оборачивает контент в капсулу из Liquid Glass, чтобы он читался как нажимаемый контрол.
+    /// На iOS 26 — нативный интерактивный `.glassEffect` (реагирует на нажатие свечением/сжатием);
+    /// на iOS < 26 — блюр `GlassView` со светлым подслоем для контраста текста.
+    @ViewBuilder
+    func glassCapsule() -> some View {
+        if #available(iOS 26, *) {
+            self.glassEffect(.regular.interactive(), in: .capsule)
+        } else {
+            self
+                .background {
+                    GlassView()
+                    Color.white.opacity(0.35)
+                }
+                .clipShape(Capsule())
+        }
+    }
+}

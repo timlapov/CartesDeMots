@@ -25,6 +25,8 @@
 		921ED5FC2C3A760C00EDE003 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 921ED5FA2C3A760C00EDE003 /* Localizable.strings */; };
 		924064732C35C6D800BBA95B /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924064722C35C6D800BBA95B /* Settings.swift */; };
 		92545E8B2BFF57C000071E57 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92545E8A2BFF57C000071E57 /* Card.swift */; };
+		92AB10022E12AB0100000001 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AB10012E12AB0100000001 /* Category.swift */; };
+		92AB10042E12AB0100000002 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AB10032E12AB0100000002 /* CategoriesView.swift */; };
 		92805D732C3BC97A00F69ED6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 92805D722C3BC97A00F69ED6 /* README.md */; };
 		928AD8982F0964E200F58694 /* LexiSwipe.icon in Resources */ = {isa = PBXBuildFile; fileRef = 928AD8972F0964E200F58694 /* LexiSwipe.icon */; };
 		9291E5D82C36BC1F00DA3383 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9291E5D72C36BC1F00DA3383 /* HapticManager.swift */; };
@@ -66,6 +68,8 @@
 		924064722C35C6D800BBA95B /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		9246E7DF2C3AEA9D0003614C /* CartesDeMotsRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CartesDeMotsRelease.entitlements; sourceTree = "<group>"; };
 		92545E8A2BFF57C000071E57 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		92AB10012E12AB0100000001 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		92AB10032E12AB0100000002 /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
 		92805D722C3BC97A00F69ED6 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		928AD8972F0964E200F58694 /* LexiSwipe.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = LexiSwipe.icon; sourceTree = "<group>"; };
 		9291E5D72C36BC1F00DA3383 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
@@ -146,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				92545E8A2BFF57C000071E57 /* Card.swift */,
+				92AB10012E12AB0100000001 /* Category.swift */,
 				92C3AF092C31A93E00A49AFF /* Resource.swift */,
 				924064722C35C6D800BBA95B /* Settings.swift */,
 				920B5D082BBD75380070E2BC /* Tab.swift */,
@@ -167,6 +172,7 @@
 				921D6E742F09B02F00356C15 /* MoreAppsView.swift */,
 				921D6E762F09B07700356C15 /* HowToUseView.swift */,
 				92E68EEC2BEB849700CFDF89 /* NewWordView.swift */,
+				92AB10032E12AB0100000002 /* CategoriesView.swift */,
 				92E68EEE2BEB84A900CFDF89 /* NewLinkView.swift */,
 				920B5D102BBEA9F90070E2BC /* CardItemView.swift */,
 				92E68EEA2BEB778900CFDF89 /* ResourceItemView.swift */,
@@ -295,6 +301,8 @@
 				92E68EF72BEB9F2200CFDF89 /* ModalHandler.swift in Sources */,
 				924064732C35C6D800BBA95B /* Settings.swift in Sources */,
 				92545E8B2BFF57C000071E57 /* Card.swift in Sources */,
+				92AB10022E12AB0100000001 /* Category.swift in Sources */,
+				92AB10042E12AB0100000002 /* CategoriesView.swift in Sources */,
 				9291E5D82C36BC1F00DA3383 /* HapticManager.swift in Sources */,
 				92E68EF92BEBE21D00CFDF89 /* ResourcesViewModel.swift in Sources */,
 				92E68EEB2BEB778900CFDF89 /* ResourceItemView.swift in Sources */,

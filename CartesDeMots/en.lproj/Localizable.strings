@@ -18,12 +18,26 @@
 
 //MARK: CardsView
 "Your list of words" = "Your list of words";
+"All words" = "All words";
+"Manage categories" = "Manage categories";
+
+//MARK: CategoriesView
+"Categories" = "Categories";
+"New category" = "New category";
+"No categories yet" = "No categories yet";
+"Rename category" = "Rename category";
+"Rename" = "Rename";
+"Cancel" = "Cancel";
+"Delete" = "Delete";
+"Delete category \"%@\"?" = "Delete category \"%@\"?";
+"The words will be kept without a category" = "The words will be kept without a category";
 
 //MARK: NewWordView
 "New word" = "New word";
 "Foreign word" = "Foreign word (invisible side)";
 "Translation" = "Translation (visible side)";
 "Add the word" = "Add the word";
+"No category" = "No category";
 
 //MARK: LearnView
 "Complexity %d" = "Complexity %d";

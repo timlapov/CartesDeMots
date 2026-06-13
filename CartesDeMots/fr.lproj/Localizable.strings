@@ -17,12 +17,26 @@
 
 //MARK: CardsView
 "Your list of words" = "Votre liste de mots";
+"All words" = "Tous les mots";
+"Manage categories" = "Gérer les catégories";
+
+//MARK: CategoriesView
+"Categories" = "Catégories";
+"New category" = "Nouvelle catégorie";
+"No categories yet" = "Aucune catégorie pour le moment";
+"Rename category" = "Renommer la catégorie";
+"Rename" = "Renommer";
+"Cancel" = "Annuler";
+"Delete" = "Supprimer";
+"Delete category \"%@\"?" = "Supprimer la catégorie « %@ » ?";
+"The words will be kept without a category" = "Les mots seront conservés sans catégorie";
 
 //MARK: NewWordView
 "New word" = "Nouveau mot";
 "Foreign word" = "Mot étranger (côté invisible)";
 "Translation" = "Traduction (côté visible)";
 "Add the word" = "Ajouter le mot";
+"No category" = "Sans catégorie";
 
 //MARK: LearnView
 "Complexity %d" = "Complexité %d";

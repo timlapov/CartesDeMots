@@ -16,13 +16,15 @@ final class Card: Identifiable {
     var comment: String?
     var addDate: Date?
     var rating: Int?
-    
-    init(foreignWord: String, translation: String, comment: String) {
+    var category: Category?
+
+    init(foreignWord: String, translation: String, comment: String, category: Category? = nil) {
         self.id = UUID()
         self.foreignWord = foreignWord
         self.translation = translation
         self.comment = comment
         self.addDate = Date.now
         self.rating = 4
+        self.category = category
     }
 }

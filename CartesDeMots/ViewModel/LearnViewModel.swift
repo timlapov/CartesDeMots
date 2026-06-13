@@ -11,21 +11,31 @@ import SwiftData
 class LearnViewModel: ObservableObject {
     @Published var currentCard: Card?
     @Published var translationIsShown = false
-    
+    @Published var selectedCategoryID: UUID?
+
     private var cards: [Card] = []
     private var modelContext: ModelContext?
-    
+
     func setModelContext(_ context: ModelContext) {
         self.modelContext = context
         fetchCards()
         selectRandomCard()
     }
-    
+
+    func selectCategory(_ categoryID: UUID?) {
+        selectedCategoryID = categoryID
+        fetchCards()
+        selectRandomCard()
+    }
+
     func fetchCards() {
         guard let context = modelContext else { return }
         let descriptor = FetchDescriptor<Card>(predicate: #Predicate { $0.rating ?? 0 > 0 })
         do {
             cards = try context.fetch(descriptor)
+            if let selectedCategoryID {
+                cards = cards.filter { $0.category?.id == selectedCategoryID }
+            }
             print("Fetched \(cards.count) cards")
         } catch {
             print("Failed to fetch cards: \(error)")

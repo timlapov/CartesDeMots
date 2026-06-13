@@ -12,6 +12,10 @@ enum Tab: String, CaseIterable {
     case learn = "tab_learn"
     case resources = "tab_resources"
     case settings = "tab_settings"
+    case search = "tab_search"
+
+    /// Вкладки, доступные как обычные пункты (без поиска): для кастомного таббара и выбора стартовой страницы.
+    static let mainTabs: [Tab] = [.words, .learn, .resources, .settings]
 
     var image: String {
         switch self {
@@ -23,6 +27,8 @@ enum Tab: String, CaseIterable {
             "link.icloud"
         case .settings:
             "gear"
+        case .search:
+            "magnifyingglass"
         }
     }
 

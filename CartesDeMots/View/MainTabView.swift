@@ -39,24 +39,24 @@ struct MainTabView: View {
     // MARK: - iOS 26+ (LiquidGlass)
     @available(iOS 26, *)
     private var modernTabView: some View {
-        TabView {
-            SwiftUI.Tab(Tab.words.localizedName, systemImage: Tab.words.image) {
+        TabView(selection: $activeTab) {
+            SwiftUI.Tab(Tab.words.localizedName, systemImage: Tab.words.image, value: Tab.words) {
                 CardsView()
             }
 
-            SwiftUI.Tab(Tab.learn.localizedName, systemImage: Tab.learn.image) {
+            SwiftUI.Tab(Tab.learn.localizedName, systemImage: Tab.learn.image, value: Tab.learn) {
                 LearnView()
             }
 
-            SwiftUI.Tab(Tab.resources.localizedName, systemImage: Tab.resources.image) {
+            SwiftUI.Tab(Tab.resources.localizedName, systemImage: Tab.resources.image, value: Tab.resources) {
                 ResourcesView()
             }
 
-            SwiftUI.Tab(Tab.settings.localizedName, systemImage: Tab.settings.image) {
+            SwiftUI.Tab(Tab.settings.localizedName, systemImage: Tab.settings.image, value: Tab.settings) {
                 SettingsView()
             }
 
-            SwiftUI.Tab(NSLocalizedString("tab_search", comment: ""), systemImage: "magnifyingglass", role: .search) {
+            SwiftUI.Tab(NSLocalizedString("tab_search", comment: ""), systemImage: "magnifyingglass", value: Tab.search, role: .search) {
                 NavigationStack {
                     SearchView(searchText: $searchText)
                         //.navigationTitle(NSLocalizedString("tab_search", comment: ""))
@@ -85,7 +85,7 @@ struct MainTabView: View {
                 })
 
             HStack {
-                ForEach(Tab.allCases, id: \.self) { tab in
+                ForEach(Tab.mainTabs, id: \.self) { tab in
                     Spacer()
                     TabBarItemView(tab: tab, activeTab: $activeTab)
                     Spacer()
@@ -108,6 +108,6 @@ struct MainTabView: View {
 
 #Preview {
     ContentView()
-        .modelContainer(for: [Card.self, Resource.self, Settings.self])
+        .modelContainer(for: [Card.self, Category.self, Resource.self, Settings.self])
 }
 
