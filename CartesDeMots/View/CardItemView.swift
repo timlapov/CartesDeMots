@@ -15,13 +15,21 @@ struct CardItemView: View {
     @State private var initialTouchPoint: CGPoint?
     @GestureState private var dragState = false
     @State private var isExpanded = false
-    
+    @Environment(\.colorScheme) private var colorScheme
+
     var onDelete: ()->()
     var onEdit: (() -> Void)? = nil
     var onResetRating: (() -> Void)? = nil
     var card: Card
     var language: String
-    
+
+    /// Tint стекла адаптируем к теме: на светлой белый налёт выравнивает тон карточек,
+    /// но на тёмной он смотрелся грязно-белёсым — поэтому там вместо осветления затемняем.
+    /// Два независимых значения opacity = две «ручки» для подстройки каждой темы отдельно.
+    private var cardGlassTint: Color {
+        colorScheme == .dark ? .black.opacity(0.30) : .white.opacity(0.4)
+    }
+
     var body: some View {
         if #available(iOS 26.0, *) {
             modernCardView()
@@ -46,7 +54,11 @@ struct CardItemView: View {
                     .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
-            .glassEffect(.regular.interactive(), in: .rect(cornerRadius: 20))
+            // Постоянный tint доминирует над тем, что под стеклом (градиент bgList + краевое
+            // преломление линзы), иначе высокие карточки — с комментарием — сэмплируют больше
+            // фона и выглядят темнее. Цвет адаптивный (cardGlassTint): светлый в light-теме,
+            // тёмный в dark, где белый налёт смотрелся грязно.
+            .glassEffect(.regular.tint(cardGlassTint).interactive(), in: .rect(cornerRadius: 20))
             .overlay {
                 if isExpanded {
                     actionButtons()
